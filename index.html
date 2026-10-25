@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA // Creative Studio — Digital Experiences & Brand Innovation</title>
+  <meta name="description" content="Award-winning creative studio crafting iconic digital experiences, boundary-pushing brands & high-converting immersive products.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%2300f2fe'/><path d='M30 70 L50 30 L70 70 Z' fill='%2307070a'/></svg>">
+</head>
+<body>
+
+  <!-- Ambient Light Effects & Noise Overlay -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <div class="ambient-blur ambient-blur-1" aria-hidden="true"></div>
+  <div class="ambient-blur ambient-blur-2" aria-hidden="true"></div>
+
+  <!-- Custom Magnetic Cursor -->
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-follower" aria-hidden="true"></div>
+
+  <!-- Site Navigation Header -->
+  <header class="site-header" id="header">
+    <div class="container nav-inner">
+      <a href="#hero" class="brand-logo" aria-label="Aura Creative Home">
+        <div class="brand-mark">
+          <svg viewBox="0 0 24 24">
+            <polygon points="12 2 2 22 22 22 12 2"></polygon>
+          </svg>
+        </div>
+        <div class="brand-text">AURA<span>// STUDIO</span></div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li><a href="#services" class="nav-link">Services</a></li>
+          <li><a href="#portfolio" class="nav-link">Selected Work</a></li>
+          <li><a href="#estimator" class="nav-link">Scope Calculator</a></li>
+          <li><a href="#process" class="nav-link">Approach</a></li>
+          <li><a href="#studio" class="nav-link">Studio</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Nav Actions & Audio Toggle -->
+      <div class="nav-actions">
+        <div class="status-pill" title="Current studio bandwidth status">
+          <span class="status-dot"></span>
+          <span>AVAILABLE FOR Q2/Q3</span>
+        </div>
+
+        <button id="audio-toggle" class="audio-toggle-btn" title="Toggle tactile sound effects" aria-label="Toggle Sound">
+          <div class="sound-bars">
+            <div class="sound-bar"></div>
+            <div class="sound-bar"></div>
+            <div class="sound-bar"></div>
+          </div>
+        </button>
+
+        <a href="#contact" class="btn btn-primary">Start a Project</a>
+
+        <button id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Open Mobile Menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Offcanvas Drawer -->
+  <div id="mobile-drawer" class="mobile-nav-drawer" aria-hidden="true">
+    <button id="mobile-drawer-close" class="mobile-drawer-close" aria-label="Close menu">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <ul class="mobile-nav-links">
+      <li><a href="#services" class="mobile-nav-link">01. Services</a></li>
+      <li><a href="#portfolio" class="mobile-nav-link">02. Selected Work</a></li>
+      <li><a href="#estimator" class="mobile-nav-link">03. Scope Calculator</a></li>
+      <li><a href="#process" class="mobile-nav-link">04. Our Process</a></li>
+      <li><a href="#studio" class="mobile-nav-link">05. About Studio</a></li>
+      <li><a href="#contact" class="mobile-nav-link">06. Start a Project</a></li>
+    </ul>
+    <div style="margin-top: 3rem;">
+      <a href="#contact" class="btn btn-gradient" style="width: 100%;">Schedule Consultation</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- =================================================================
+         HERO SECTION: Bold Typography + Interactive Physics Canvas
+         ================================================================= -->
+    <section class="hero-section" id="hero">
+      <canvas id="hero-canvas"></canvas>
+
+      <div class="container hero-content">
+        <div class="hero-pill-badge">
+          <span class="sparkle">✦</span>
+          <span>Awwwards Independent Agency of the Year Nominee</span>
+        </div>
+
+        <h1 class="hero-title">
+          We Design the <br>
+          <span class="gradient-text">Digital Future.</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          A boutique creative collective engineering iconic digital identities, interactive 3D web applications, and immersive flagships for category-defining pioneers.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#portfolio" class="btn btn-primary">
+            Explore Portfolio
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+          <a href="#estimator" class="btn btn-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+              <line x1="8" y1="6" x2="16" y2="6"></line>
+              <line x1="16" y1="14" x2="16" y2="18"></line>
+              <path d="M16 10h.01"></path>
+              <path d="M12 10h.01"></path>
+              <path d="M8 10h.01"></path>
+              <path d="M12 14h.01"></path>
+              <path d="M8 14h.01"></path>
+              <path d="M12 18h.01"></path>
+              <path d="M8 18h.01"></path>
+            </svg>
+            Scope Calculator
+          </a>
+        </div>
+
+        <!-- Key Agency Metrics -->
+        <div class="hero-metrics-bar">
+          <div class="metric-item">
+            <div class="metric-value">18<span class="highlight">+</span></div>
+            <div class="metric-label">Awwwards & FWA Honors</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-value">140<span class="highlight">+</span></div>
+            <div class="metric-label">Digital Products Shipped</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-value">$320<span class="highlight">M</span></div>
+            <div class="metric-label">Client Growth Valuation</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-value">99.4<span class="highlight">%</span></div>
+            <div class="metric-label">Client Partnership Satisfaction</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         CLIENT LOGO MARQUEE: Social Proof & Prestige
+         ================================================================= -->
+    <section class="marquee-section" aria-label="Trusted by industry leaders">
+      <div class="marquee-track">
+        <!-- Client Brand 1 -->
+        <div class="marquee-client">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/><path d="M7 9a10 10 0 0 1 10 2M8 12a7 7 0 0 1 8 1.5M9 15a4 4 0 0 1 6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          SPOTIFY
+        </div>
+        <!-- Client Brand 2 -->
+        <div class="marquee-client">
+          <svg viewBox="0 0 24 24"><path d="M4 15l15-7-10 12-1-5z" fill="currentColor"/></svg>
+          LINEAR
+        </div>
+        <!-- Client Brand 3 -->
+        <div class="marquee-client">
+          <svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="4"/><circle cx="16" cy="8" r="4"/><circle cx="12" cy="16" r="4"/></svg>
+          MONOLITH
+        </div>
+        <!-- Client Brand 4 -->
+        <div class="marquee-client">
+          <svg viewBox="0 0 24 24"><path d="M2 17l10-14 10 14H2z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          STRIPE
+        </div>
+        <!-- Client Brand 5 -->
+        <div class="marquee-client">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          OPENAI LABS
+        </div>
+        <!-- Client Brand 6 -->
+        <div class="marquee-client">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" fill="none"/><line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2"/><line x1="12" y1="3" x2="12" y2="21" stroke="currentColor" stroke-width="2"/></svg>
+          POLESTAR
+        </div>
+        <!-- Client Brand 7 -->
+        <div class="marquee-client">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          FIGMA ECOSYSTEM
+        </div>
+        <!-- Repeat for seamless continuous loop -->
+        <div class="marquee-client">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/><path d="M7 9a10 10 0 0 1 10 2M8 12a7 7 0 0 1 8 1.5M9 15a4 4 0 0 1 6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          SPOTIFY
+        </div>
+        <div class="marquee-client">
+          <svg viewBox="0 0 24 24"><path d="M4 15l15-7-10 12-1-5z" fill="currentColor"/></svg>
+          LINEAR
+        </div>
+        <div class="marquee-client">
+          <svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="4"/><circle cx="16" cy="8" r="4"/><circle cx="12" cy="16" r="4"/></svg>
+          MONOLITH
+        </div>
+        <div class="marquee-client">
+          <svg viewBox="0 0 24 24"><path d="M2 17l10-14 10 14H2z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          STRIPE
+        </div>
+        <div class="marquee-client">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          OPENAI LABS
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         SERVICES SECTION: Strategic Disciplines
+         ================================================================= -->
+    <section class="services-section" id="services">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Disciplines & Capabilities</div>
+          <h2 class="section-title">Engineered for Brands <br>Refusing to Settle.</h2>
+          <p class="section-desc">
+            We operate at the nexus of artistic direction and deep technical execution, providing full-lifecycle digital transformation.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <!-- Service 1 -->
+          <div class="service-card">
+            <span class="service-num">01 // IDENTITY</span>
+            <div class="service-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polygon points="12 6 16 14 8 14"></polygon>
+              </svg>
+            </div>
+            <h3 class="service-name">Brand Strategy & Visual Systems</h3>
+            <p class="service-description">
+              We define distinctive verbal and visual identities that resonate across every medium. From custom typography and color hierarchies to comprehensive design tokens.
+            </p>
+            <div class="service-tags">
+              <span class="tag-badge">Brand Architecture</span>
+              <span class="tag-badge">Custom Typography</span>
+              <span class="tag-badge">Design Systems</span>
+              <span class="tag-badge">Art Direction</span>
+            </div>
+          </div>
+
+          <!-- Service 2 -->
+          <div class="service-card">
+            <span class="service-num">02 // DIGITAL PRODUCT</span>
+            <div class="service-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </div>
+            <h3 class="service-name">UI/UX & SaaS Experience Design</h3>
+            <p class="service-description">
+              We transform complex workflows into frictionless, intuitive digital interfaces. Deep user research, behavioral flows, and micro-interactions that drive adoption and retention.
+            </p>
+            <div class="service-tags">
+              <span class="tag-badge">SaaS Workbenches</span>
+              <span class="tag-badge">Complex Data Viz</span>
+              <span class="tag-badge">High-Fidelity Prototypes</span>
+              <span class="tag-badge">UX Auditing</span>
+            </div>
+          </div>
+
+          <!-- Service 3 -->
+          <div class="service-card">
+            <span class="service-num">03 // CREATIVE TECH</span>
+            <div class="service-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </div>
+            <h3 class="service-name">Creative Web & WebGL Engineering</h3>
+            <p class="service-description">
+              Bleeding-edge frontend engineering with 60fps animations, WebGL particle physics, and Headless architectures built for blistering performance and global scale.
+            </p>
+            <div class="service-tags">
+              <span class="tag-badge">WebGL / Three.js</span>
+              <span class="tag-badge">Next.js & React</span>
+              <span class="tag-badge">Creative Shaders</span>
+              <span class="tag-badge">Sub-Second Load Times</span>
+            </div>
+          </div>
+
+          <!-- Service 4 -->
+          <div class="service-card">
+            <span class="service-num">04 // 3D & MOTION</span>
+            <div class="service-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+              </svg>
+            </div>
+            <h3 class="service-name">CGI, 3D Worlds & Motion Direction</h3>
+            <p class="service-description">
+              Photorealistic product rendering, procedural 3D simulations, and cinematic brand launch films that capture imagination and elevate perceived market value.
+            </p>
+            <div class="service-tags">
+              <span class="tag-badge">Product CGI</span>
+              <span class="tag-badge">Real-time 3D</span>
+              <span class="tag-badge">Haptic Sound Design</span>
+              <span class="tag-badge">Campaign Direction</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         PORTFOLIO SECTION: Filterable Showcase with Case Study Modals
+         ================================================================= -->
+    <section class="portfolio-section" id="portfolio">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Featured Case Studies</div>
+          <h2 class="section-title">Selected Works <br>That Made History.</h2>
+          <p class="section-desc">
+            Explore our curated selection of flagship projects. Click any project to inspect the strategic challenge, technical architecture, and impact.
+          </p>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="portfolio-filter-bar" role="tablist">
+          <button class="filter-btn active" data-filter="all">All Projects (6)</button>
+          <button class="filter-btn" data-filter="branding">Branding & Identity</button>
+          <button class="filter-btn" data-filter="web">WebGL & 3D Web</button>
+          <button class="filter-btn" data-filter="product">Product & UI/UX</button>
+          <button class="filter-btn" data-filter="motion">Motion & Hardware</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="portfolio-grid">
+          <!-- Project 1: Neura AI -->
+          <article class="project-card" data-category="web product" data-project="neura">
+            <div class="project-thumb">
+              <div class="project-badge-corner">AI & WEBGL</div>
+              <div class="project-thumb-visual" style="background: radial-gradient(circle at 70% 30%, #00f2fe33, #07070d 80%);">
+                <!-- Generative SVG Mockup Graphic -->
+                <svg width="80%" height="80%" viewBox="0 0 400 240" fill="none">
+                  <rect x="20" y="20" width="360" height="200" rx="12" fill="#121218" stroke="#00f2fe" stroke-width="1.5" stroke-opacity="0.4"/>
+                  <circle cx="80" cy="120" r="40" fill="url(#p1-grad)" opacity="0.8"/>
+                  <path d="M140 80h180M140 110h120M140 140h150M140 170h90" stroke="#475569" stroke-width="4" stroke-linecap="round"/>
+                  <circle cx="340" cy="50" r="8" fill="#00f2fe"/>
+                  <defs>
+                    <linearGradient id="p1-grad" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="#00f2fe"/>
+                      <stop offset="100%" stop-color="#7928ca"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <div class="project-action-overlay">
+                <span class="project-view-btn">
+                  View Case Study
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </span>
+              </div>
+            </div>
+            <div class="project-details">
+              <div class="project-header-row">
+                <span class="project-client">NEURA AI</span>
+                <span class="project-year">2025</span>
+              </div>
+              <h3 class="project-title">Next-Gen Spatial Computing & AI Interface</h3>
+              <p class="project-summary">A groundbreaking WebGL design system and interactive multi-modal prompt canvas for foundational AI models.</p>
+              <div class="project-footer-tags">
+                <span class="tag-badge">WebGL 3D</span>
+                <span class="tag-badge">AI Platform</span>
+                <span class="tag-badge">+340% Adoption</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2: Chronos Horology -->
+          <article class="project-card" data-category="branding web" data-project="chronos">
+            <div class="project-thumb">
+              <div class="project-badge-corner">LUXURY & E-COM</div>
+              <div class="project-thumb-visual" style="background: radial-gradient(circle at 30% 70%, #f59e0b22, #07070d 80%);">
+                <svg width="80%" height="80%" viewBox="0 0 400 240" fill="none">
+                  <rect x="20" y="20" width="360" height="200" rx="12" fill="#151412" stroke="#f59e0b" stroke-width="1.5" stroke-opacity="0.3"/>
+                  <circle cx="200" cy="120" r="60" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4 4"/>
+                  <circle cx="200" cy="120" r="45" stroke="#fff" stroke-width="1" opacity="0.6"/>
+                  <line x1="200" y1="120" x2="200" y2="85" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="200" y1="120" x2="230" y2="120" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="project-action-overlay">
+                <span class="project-view-btn">
+                  View Case Study
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </span>
+              </div>
+            </div>
+            <div class="project-details">
+              <div class="project-header-row">
+                <span class="project-client">CHRONOS SWISS</span>
+                <span class="project-year">2025</span>
+              </div>
+              <h3 class="project-title">Haute Horlogerie 3D Configurator</h3>
+              <p class="project-summary">Interactive real-time watch assembly and headless luxury commerce experience with 60fps tourbillon physics.</p>
+              <div class="project-footer-tags">
+                <span class="tag-badge">3D Configurator</span>
+                <span class="tag-badge">Headless Commerce</span>
+                <span class="tag-badge">+84% Lift</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3: Synapse Cloud -->
+          <article class="project-card" data-category="product" data-project="synapse">
+            <div class="project-thumb">
+              <div class="project-badge-corner">DEV TOOLS & SAAS</div>
+              <div class="project-thumb-visual" style="background: radial-gradient(circle at 50% 50%, #8b5cf622, #07070d 80%);">
+                <svg width="80%" height="80%" viewBox="0 0 400 240" fill="none">
+                  <rect x="20" y="20" width="360" height="200" rx="12" fill="#13121b" stroke="#8b5cf6" stroke-width="1.5" stroke-opacity="0.3"/>
+                  <path d="M50 160 L100 120 L160 145 L220 90 L280 115 L350 60" stroke="#8b5cf6" stroke-width="3" fill="none"/>
+                  <circle cx="220" cy="90" r="5" fill="#00f2fe"/>
+                  <circle cx="350" cy="60" r="5" fill="#8b5cf6"/>
+                  <rect x="50" y="50" width="80" height="20" rx="4" fill="#2d2b45"/>
+                </svg>
+              </div>
+              <div class="project-action-overlay">
+                <span class="project-view-btn">
+                  View Case Study
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </span>
+              </div>
+            </div>
+            <div class="project-details">
+              <div class="project-header-row">
+                <span class="project-client">SYNAPSE CLOUD</span>
+                <span class="project-year">2024</span>
+              </div>
+              <h3 class="project-title">Enterprise Cloud Telemetry Workbench</h3>
+              <p class="project-summary">High-density visual telemetry platform for microservices engineers, handling 100M+ real-time events.</p>
+              <div class="project-footer-tags">
+                <span class="tag-badge">Data Visualization</span>
+                <span class="tag-badge">Design System</span>
+                <span class="tag-badge">3.2x ARR</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 4: Solaris Motors -->
+          <article class="project-card" data-category="motion web" data-project="solaris">
+            <div class="project-thumb">
+              <div class="project-badge-corner">AUTOMOTIVE & CGI</div>
+              <div class="project-thumb-visual" style="background: radial-gradient(circle at 60% 40%, #ec489922, #07070d 80%);">
+                <svg width="80%" height="80%" viewBox="0 0 400 240" fill="none">
+                  <rect x="20" y="20" width="360" height="200" rx="12" fill="#161118" stroke="#ec4899" stroke-width="1.5" stroke-opacity="0.3"/>
+                  <path d="M70 145 C120 145 150 95 240 95 C290 95 330 135 340 145 Z" stroke="#ec4899" stroke-width="2.5" fill="none"/>
+                  <circle cx="120" cy="150" r="18" stroke="#fff" stroke-width="2"/>
+                  <circle cx="280" cy="150" r="18" stroke="#fff" stroke-width="2"/>
+                </svg>
+              </div>
+              <div class="project-action-overlay">
+                <span class="project-view-btn">
+                  View Case Study
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </span>
+              </div>
+            </div>
+            <div class="project-details">
+              <div class="project-header-row">
+                <span class="project-client">SOLARIS MOTORS</span>
+                <span class="project-year">2024</span>
+              </div>
+              <h3 class="project-title">Hypercar Digital Rollout & Physics Sim</h3>
+              <p class="project-summary">Wind-tunnel aerodynamic simulations and dynamic audio synthesis for an all-electric hypercar debut.</p>
+              <div class="project-footer-tags">
+                <span class="tag-badge">WebGL Physics</span>
+                <span class="tag-badge">Motion Direction</span>
+                <span class="tag-badge">2,400+ Pre-orders</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 5: Metaform Architecture -->
+          <article class="project-card" data-category="branding web" data-project="metaform">
+            <div class="project-thumb">
+              <div class="project-badge-corner">SPATIAL & BRAND</div>
+              <div class="project-thumb-visual" style="background: radial-gradient(circle at 40% 60%, #10b98122, #07070d 80%);">
+                <svg width="80%" height="80%" viewBox="0 0 400 240" fill="none">
+                  <rect x="20" y="20" width="360" height="200" rx="12" fill="#111614" stroke="#10b981" stroke-width="1.5" stroke-opacity="0.3"/>
+                  <polygon points="200,60 300,160 100,160" stroke="#10b981" stroke-width="2" fill="none"/>
+                  <polygon points="200,90 270,160 130,160" stroke="#fff" stroke-width="1" stroke-opacity="0.5" fill="none"/>
+                </svg>
+              </div>
+              <div class="project-action-overlay">
+                <span class="project-view-btn">
+                  View Case Study
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </span>
+              </div>
+            </div>
+            <div class="project-details">
+              <div class="project-header-row">
+                <span class="project-client">METAFORM</span>
+                <span class="project-year">2024</span>
+              </div>
+              <h3 class="project-title">Generative Architecture Spatial Showcase</h3>
+              <p class="project-summary">Monolithic continuous-scroll web portal with structural wireframes and interactive architectural blueprints.</p>
+              <div class="project-footer-tags">
+                <span class="tag-badge">Architectural Wireframes</span>
+                <span class="tag-badge">Editorial Web</span>
+                <span class="tag-badge">$45M Pipeline</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 6: Vox Acoustics -->
+          <article class="project-card" data-category="motion product" data-project="vox">
+            <div class="project-thumb">
+              <div class="project-badge-corner">HARDWARE & AUDIO</div>
+              <div class="project-thumb-visual" style="background: radial-gradient(circle at 50% 50%, #38bdf822, #07070d 80%);">
+                <svg width="80%" height="80%" viewBox="0 0 400 240" fill="none">
+                  <rect x="20" y="20" width="360" height="200" rx="12" fill="#111418" stroke="#38bdf8" stroke-width="1.5" stroke-opacity="0.3"/>
+                  <path d="M50 120 Q100 60, 150 120 T250 120 T350 120" stroke="#38bdf8" stroke-width="2.5" fill="none"/>
+                  <path d="M50 120 Q100 160, 150 120 T250 120 T350 120" stroke="#8b5cf6" stroke-width="1.5" fill="none" opacity="0.7"/>
+                </svg>
+              </div>
+              <div class="project-action-overlay">
+                <span class="project-view-btn">
+                  View Case Study
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </span>
+              </div>
+            </div>
+            <div class="project-details">
+              <div class="project-header-row">
+                <span class="project-client">VOX ACOUSTICS</span>
+                <span class="project-year">2024</span>
+              </div>
+              <h3 class="project-title">Interactive Soundwave Visualizer & 3D CGI</h3>
+              <p class="project-summary">Interactive browser frequency spectrum analyzer and photorealistic exploded hardware 3D animations.</p>
+              <div class="project-footer-tags">
+                <span class="tag-badge">Web Audio API</span>
+                <span class="tag-badge">Product 3D</span>
+                <span class="tag-badge">Webby Award</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         INTERACTIVE ESTIMATOR: Real-time Budget & Timeline Calculator
+         ================================================================= -->
+    <section class="estimator-section" id="estimator">
+      <div class="container">
+        <div class="estimator-box">
+          <div class="section-header" style="margin-bottom: 2.5rem;">
+            <div class="section-tag">Interactive Planner</div>
+            <h2 class="section-title">Calculate Your Project Scope.</h2>
+            <p class="section-desc">
+              Select your requirements and preferred deployment timeline to get an instant budget range and execution roadmap.
+            </p>
+          </div>
+
+          <div class="estimator-grid">
+            <div class="estimator-options">
+              <!-- Step 1: Services Selection -->
+              <div>
+                <h4 class="estimator-group-title">
+                  <span class="step-num">01 //</span> Select Scope Deliverables
+                </h4>
+                <div class="chips-container">
+                  <div class="estimator-chip selected" data-cost="8000" data-name="Brand Strategy & Identity">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    Brand Identity & System
+                  </div>
+                  <div class="estimator-chip selected" data-cost="14000" data-name="UI/UX & Web Design">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    UI/UX & Creative Direction
+                  </div>
+                  <div class="estimator-chip selected" data-cost="16000" data-name="WebGL & 3D Interactive">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    WebGL & 3D Experiences
+                  </div>
+                  <div class="estimator-chip" data-cost="18000" data-name="Full-Stack Dev & CMS">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    Full-Stack & Headless CMS
+                  </div>
+                  <div class="estimator-chip" data-cost="10000" data-name="CGI Motion & Brand Film">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    CGI Motion & Sound Design
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 2: Timeline Preference -->
+              <div>
+                <h4 class="estimator-group-title">
+                  <span class="step-num">02 //</span> Preferred Delivery Pace
+                </h4>
+                <div class="radio-cards-row">
+                  <div class="radio-card timeline-card" data-mode="sprint">
+                    <div class="rc-title">Sprint</div>
+                    <div class="rc-desc">4 - 6 Weeks (Rush)</div>
+                  </div>
+                  <div class="radio-card timeline-card selected" data-mode="standard">
+                    <div class="rc-title">Standard</div>
+                    <div class="rc-desc">8 - 10 Weeks</div>
+                  </div>
+                  <div class="radio-card timeline-card" data-mode="flexible">
+                    <div class="rc-title">Quarterly</div>
+                    <div class="rc-desc">12 - 16 Weeks</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Estimated Output Result Card -->
+            <div class="estimator-result-card">
+              <div class="calc-header">
+                <div class="calc-label">Estimated Investment</div>
+                <div class="calc-price" id="calc-total-price">$38,000 - $49,000</div>
+              </div>
+
+              <ul class="calc-breakdown-list">
+                <li class="calc-breakdown-item">
+                  <span class="item-label">Estimated Delivery:</span>
+                  <span class="item-val" id="calc-est-timeline">8 - 10 Weeks (Standard)</span>
+                </li>
+                <li class="calc-breakdown-item">
+                  <span class="item-label">Team Allocation:</span>
+                  <span class="item-val">3 Senior Leads + Director</span>
+                </li>
+                <li class="calc-breakdown-item">
+                  <span class="item-label">Scope Complexity:</span>
+                  <span class="item-val" id="calc-deliverables-count">3 Selected Scope Items</span>
+                </li>
+                <li class="calc-breakdown-item">
+                  <span class="item-label">Includes:</span>
+                  <span class="item-val">Full Source Code & IP Handover</span>
+                </li>
+              </ul>
+
+              <button class="btn btn-gradient" id="apply-scope-to-contact" style="width: 100%;">
+                Book Scope Consultation
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         PROCESS SECTION: Structured 4-Phase Delivery Framework
+         ================================================================= -->
+    <section class="process-section" id="process">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">How We Work</div>
+          <h2 class="section-title">A Rigorous Process <br>With Zero Guesswork.</h2>
+          <p class="section-desc">
+            We don't do endless meetings or bureaucratic bloat. You collaborate directly with principal designers and senior engineers through sprint milestones.
+          </p>
+        </div>
+
+        <div class="process-steps-grid">
+          <!-- Step 1 -->
+          <div class="process-step-card">
+            <div class="step-header">
+              <span class="step-number">01</span>
+              <div class="step-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              </div>
+            </div>
+            <h3 class="step-title">Discovery & Strategy</h3>
+            <p class="step-desc">
+              Deep dive into user psychographics, competitor landscape, business models, and core differentiation narratives. We construct the strategic foundation before drawing a single pixel.
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="process-step-card">
+            <div class="step-header">
+              <span class="step-number">02</span>
+              <div class="step-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+              </div>
+            </div>
+            <h3 class="step-title">Art Direction & UI/UX</h3>
+            <p class="step-desc">
+              Visual moodboards, typography pairing, motion choreography, and interactive Figma prototypes. You test real functional user flows early to validate every decision.
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="process-step-card">
+            <div class="step-header">
+              <span class="step-number">03</span>
+              <div class="step-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+              </div>
+            </div>
+            <h3 class="step-title">Creative Engineering</h3>
+            <p class="step-desc">
+              Transforming designs into production code with smooth GSAP animations, WebGL shaders, rigorous cross-browser testing, SEO optimization, and sub-second load times.
+            </p>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="process-step-card">
+            <div class="step-header">
+              <span class="step-number">04</span>
+              <div class="step-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+            </div>
+            <h3 class="step-title">Launch & Handover</h3>
+            <p class="step-desc">
+              Stress testing, analytics calibration, complete documentation, video walkthroughs, and 100% intellectual property rights transfer directly to your organization.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         AWARDS SECTION: Industry Recognition
+         ================================================================= -->
+    <section class="awards-section" aria-label="Awards and honors">
+      <div class="container">
+        <div class="section-header" style="margin-bottom: 2.5rem;">
+          <div class="section-tag">Validation</div>
+          <h2 class="section-title">Recognized by the Best.</h2>
+        </div>
+
+        <div class="awards-table">
+          <div class="award-row">
+            <div class="award-year">2025</div>
+            <div class="award-name">Awwwards Site of the Month</div>
+            <div class="award-project">Chronos Swiss Luxury Configurator</div>
+            <div class="award-category">E-Commerce Innovation</div>
+          </div>
+          <div class="award-row">
+            <div class="award-year">2025</div>
+            <div class="award-name">FWA of the Day</div>
+            <div class="award-project">Neura AI Spatial Interface</div>
+            <div class="award-category">Artificial Intelligence UI</div>
+          </div>
+          <div class="award-row">
+            <div class="award-year">2024</div>
+            <div class="award-name">Red Dot: Best of the Best</div>
+            <div class="award-project">Solaris Hypercar Digital Campaign</div>
+            <div class="award-category">Automotive Motion</div>
+          </div>
+          <div class="award-row">
+            <div class="award-year">2024</div>
+            <div class="award-name">Webby Award Winner</div>
+            <div class="award-project">Vox Acoustic Engineering</div>
+            <div class="award-category">Best Visual Design</div>
+          </div>
+          <div class="award-row">
+            <div class="award-year">2024</div>
+            <div class="award-name">CSS Design Awards</div>
+            <div class="award-project">Metaform Spatial Studio</div>
+            <div class="award-category">UI/UX Innovation</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         TESTIMONIALS SECTION: Client Voice Carousel
+         ================================================================= -->
+    <section class="testimonials-section">
+      <div class="container">
+        <div class="testimonial-carousel">
+          <div class="testimonial-track">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-card">
+              <svg class="quote-icon" viewBox="0 0 24 24"><path d="M10 11H6a4 4 0 0 1 4-4V3a8 8 0 0 0-8 8v10h10V11zm14 0h-4a4 4 0 0 1 4-4V3a8 8 0 0 0-8 8v10h10V11z"/></svg>
+              <p class="quote-text">
+                "AURA doesn't just design interfaces — they build cultural artifacts. Their WebGL engineering gave our AI platform the visual credibility to close our $38M Series A."
+              </p>
+              <div class="author-row">
+                <div class="author-info">
+                  <div class="author-avatar" style="background: linear-gradient(135deg, #00f2fe, #7928ca); display: flex; align-items: center; justify-content: center; font-weight: bold; color: #fff;">ER</div>
+                  <div>
+                    <div class="author-name">Elena Rostova</div>
+                    <div class="author-role">Co-Founder & CEO, Neura AI</div>
+                  </div>
+                </div>
+                <div class="carousel-controls">
+                  <button class="carousel-nav-btn" id="testi-prev" aria-label="Previous quote">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                  </button>
+                  <button class="carousel-nav-btn" id="testi-next" aria-label="Next quote">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card">
+              <svg class="quote-icon" viewBox="0 0 24 24"><path d="M10 11H6a4 4 0 0 1 4-4V3a8 8 0 0 0-8 8v10h10V11zm14 0h-4a4 4 0 0 1 4-4V3a8 8 0 0 0-8 8v10h10V11z"/></svg>
+              <p class="quote-text">
+                "Working with AURA was the smoothest agency experience of my career. Zero fluff, razor-sharp execution, and our online conversion leaped +84% in the first quarter."
+              </p>
+              <div class="author-row">
+                <div class="author-info">
+                  <div class="author-avatar" style="background: linear-gradient(135deg, #f59e0b, #ef4444); display: flex; align-items: center; justify-content: center; font-weight: bold; color: #fff;">HM</div>
+                  <div>
+                    <div class="author-name">Henri de Montmirail</div>
+                    <div class="author-role">Managing Director, Chronos Switzerland</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="testimonial-card">
+              <svg class="quote-icon" viewBox="0 0 24 24"><path d="M10 11H6a4 4 0 0 1 4-4V3a8 8 0 0 0-8 8v10h10V11zm14 0h-4a4 4 0 0 1 4-4V3a8 8 0 0 0-8 8v10h10V11z"/></svg>
+              <p class="quote-text">
+                "Our engineers are notoriously picky about design systems. AURA crafted a workbench so intuitive and fast that our daily active usage surged 3x within 60 days."
+              </p>
+              <div class="author-row">
+                <div class="author-info">
+                  <div class="author-avatar" style="background: linear-gradient(135deg, #8b5cf6, #3b82f6); display: flex; align-items: center; justify-content: center; font-weight: bold; color: #fff;">DC</div>
+                  <div>
+                    <div class="author-name">David Chen</div>
+                    <div class="author-role">VP of Engineering, Synapse Cloud</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         STUDIO & TEAM: Meet the Creative Leads
+         ================================================================= -->
+    <section class="team-section" id="studio">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Leadership & Craft</div>
+          <h2 class="section-title">The Minds Behind <br>The Work.</h2>
+          <p class="section-desc">
+            A tight-knit global collective of seasoned creative directors, 3D technical artists, and systems architects.
+          </p>
+        </div>
+
+        <div class="team-grid">
+          <!-- Member 1 -->
+          <div class="team-card">
+            <div class="team-avatar-box">
+              <!-- Illustrated Modern Geometric Portrait -->
+              <svg width="100%" height="100%" viewBox="0 0 200 240" fill="none">
+                <rect width="200" height="240" fill="#181822"/>
+                <circle cx="100" cy="90" r="45" fill="#2d2d3d"/>
+                <path d="M40 210 C40 150 160 150 160 210 Z" fill="#242432"/>
+                <circle cx="100" cy="90" r="30" fill="url(#t-grad1)"/>
+                <defs>
+                  <linearGradient id="t-grad1" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#00f2fe"/>
+                    <stop offset="100%" stop-color="#3b82f6"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="team-info">
+              <h4 class="team-name">Astrid Thorne</h4>
+              <div class="team-role">EXECUTIVE CREATIVE DIRECTOR</div>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">Ex-Pentagram & Apple. Leading brand vision and avant-garde art direction.</p>
+              <div class="team-socials">
+                <a href="#studio">Twitter</a>
+                <a href="#studio">ReadCV</a>
+                <a href="#studio">LinkedIn</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Member 2 -->
+          <div class="team-card">
+            <div class="team-avatar-box">
+              <svg width="100%" height="100%" viewBox="0 0 200 240" fill="none">
+                <rect width="200" height="240" fill="#181822"/>
+                <circle cx="100" cy="90" r="45" fill="#2d2d3d"/>
+                <path d="M40 210 C40 150 160 150 160 210 Z" fill="#242432"/>
+                <circle cx="100" cy="90" r="30" fill="url(#t-grad2)"/>
+                <defs>
+                  <linearGradient id="t-grad2" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#7928ca"/>
+                    <stop offset="100%" stop-color="#ff0080"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="team-info">
+              <h4 class="team-name">Marcus Vance</h4>
+              <div class="team-role">HEAD OF CREATIVE TECH</div>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">WebGL specialist & Three.js contributor. Engineering high-performance physics.</p>
+              <div class="team-socials">
+                <a href="#studio">GitHub</a>
+                <a href="#studio">Twitter</a>
+                <a href="#studio">Codepen</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Member 3 -->
+          <div class="team-card">
+            <div class="team-avatar-box">
+              <svg width="100%" height="100%" viewBox="0 0 200 240" fill="none">
+                <rect width="200" height="240" fill="#181822"/>
+                <circle cx="100" cy="90" r="45" fill="#2d2d3d"/>
+                <path d="M40 210 C40 150 160 150 160 210 Z" fill="#242432"/>
+                <circle cx="100" cy="90" r="30" fill="url(#t-grad3)"/>
+                <defs>
+                  <linearGradient id="t-grad3" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#f59e0b"/>
+                    <stop offset="100%" stop-color="#ef4444"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="team-info">
+              <h4 class="team-name">Sora Takahashi</h4>
+              <div class="team-role">DIRECTOR OF 3D & MOTION</div>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">Spatial CGI artist and cinematic animator crafting hyperreal digital objects.</p>
+              <div class="team-socials">
+                <a href="#studio">Behance</a>
+                <a href="#studio">Instagram</a>
+                <a href="#studio">ArtStation</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Member 4 -->
+          <div class="team-card">
+            <div class="team-avatar-box">
+              <svg width="100%" height="100%" viewBox="0 0 200 240" fill="none">
+                <rect width="200" height="240" fill="#181822"/>
+                <circle cx="100" cy="90" r="45" fill="#2d2d3d"/>
+                <path d="M40 210 C40 150 160 150 160 210 Z" fill="#242432"/>
+                <circle cx="100" cy="90" r="30" fill="url(#t-grad4)"/>
+                <defs>
+                  <linearGradient id="t-grad4" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#10b981"/>
+                    <stop offset="100%" stop-color="#00f2fe"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="team-info">
+              <h4 class="team-name">Leila Morales</h4>
+              <div class="team-role">PRODUCT DESIGN LEAD</div>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">Specializing in enterprise developer tools, usability architectures, and design tokens.</p>
+              <div class="team-socials">
+                <a href="#studio">Dribbble</a>
+                <a href="#studio">Figma</a>
+                <a href="#studio">Substack</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         CONTACT & INQUIRY SECTION: High-Converting Form + Studio Clocks
+         ================================================================= -->
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="contact-wrapper">
+          <div class="contact-layout">
+            <!-- Left Column: Agency Info & World Clocks -->
+            <div class="contact-info-col">
+              <div>
+                <div class="section-tag">Let's Connect</div>
+                <h2 class="section-title" style="font-size: clamp(2rem, 3.5vw, 3rem);">Have a Vision? <br>Let's Realize It.</h2>
+                <p style="color: var(--text-secondary); margin-top: 1rem; line-height: 1.6;">
+                  We accept a maximum of 4 major client partnerships per quarter to maintain relentless craftsmanship and principal-led focus.
+                </p>
+
+                <div class="contact-meta-list">
+                  <div>
+                    <div class="meta-item-label">Direct Studio Email</div>
+                    <a href="mailto:hello@aura-creative.studio" class="meta-item-val" style="color: var(--accent-cyan);">hello@aura-creative.studio</a>
+                  </div>
+                  <div>
+                    <div class="meta-item-label">Headquarters</div>
+                    <div class="meta-item-val">742 Evergreen St, Soho, New York</div>
+                  </div>
+                  <div>
+                    <div class="meta-item-label">General Turnaround</div>
+                    <div class="meta-item-val">Within 24 Hours on Business Days</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Live Studio World Clocks -->
+              <div class="world-clocks">
+                <div class="world-clocks-title">Studio Time Zones</div>
+                <div class="clocks-grid">
+                  <div class="clock-card">
+                    <div class="clock-city">NEW YORK</div>
+                    <div class="clock-time" id="clock-ny">--:--:--</div>
+                  </div>
+                  <div class="clock-card">
+                    <div class="clock-city">LONDON</div>
+                    <div class="clock-time" id="clock-ldn">--:--:--</div>
+                  </div>
+                  <div class="clock-card">
+                    <div class="clock-city">TOKYO</div>
+                    <div class="clock-time" id="clock-tyo">--:--:--</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Interactive Form -->
+            <div>
+              <form class="contact-form" id="agency-inquiry-form">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+                  <div class="form-group">
+                    <label class="form-label" for="client-name">Your Name *</label>
+                    <input type="text" id="client-name" class="form-input" placeholder="e.g. Maya Lin" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="client-email">Work Email *</label>
+                    <input type="email" id="client-email" class="form-input" placeholder="maya@company.com" required>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="client-company">Company / Organization</label>
+                  <input type="text" id="client-company" class="form-input" placeholder="Company name & website">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Estimated Budget Target</label>
+                  <div class="budget-buttons-row">
+                    <button type="button" class="budget-btn" data-val="tier-1">$20k - $40k</button>
+                    <button type="button" class="budget-btn active" data-val="tier-2">$40k - $80k</button>
+                    <button type="button" class="budget-btn" data-val="tier-3">$80k - $150k+</button>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="project-brief">Project Overview & Objectives *</label>
+                  <textarea id="project-brief" class="form-textarea" placeholder="Describe what you want to build, key goals, deadlines, or links..." required></textarea>
+                </div>
+
+                <div id="form-status" class="form-status-msg"></div>
+
+                <button type="submit" class="btn btn-gradient" style="padding: 1.1rem; width: 100%;">
+                  Transmit Project Brief
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =================================================================
+       FOOTER: Editorial Closure & Quick Links
+       ================================================================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-cta">
+        <h2 class="footer-cta-title">Ready to Elevate <br>Your Next Chapter?</h2>
+        <a href="#contact" class="btn btn-primary" style="padding: 1rem 2.5rem; font-size: 1.05rem;">
+          Initiate Conversation
+        </a>
+      </div>
+
+      <div class="footer-columns">
+        <div>
+          <div class="brand-logo" style="margin-bottom: 0.5rem;">
+            <div class="brand-mark">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 2 22 22 22 12 2"></polygon></svg>
+            </div>
+            <div class="brand-text">AURA<span>// STUDIO</span></div>
+          </div>
+          <p class="footer-brand-bio">
+            Independent creative studio elevating brands through art direction, high-velocity engineering, and spatial computing.
+          </p>
+        </div>
+
+        <div>
+          <h5 class="footer-col-title">Navigation</h5>
+          <ul class="footer-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Selected Work</a></li>
+            <li><a href="#estimator">Scope Calculator</a></li>
+            <li><a href="#process">Our Approach</a></li>
+            <li><a href="#studio">The Team</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="footer-col-title">Social / Networks</h5>
+          <ul class="footer-links">
+            <li><a href="https://twitter.com" target="_blank" rel="noopener">X / Twitter</a></li>
+            <li><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://awwwards.com" target="_blank" rel="noopener">Awwwards Profile</a></li>
+            <li><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="footer-col-title">Dispatches (Newsletter)</h5>
+          <p style="font-size: 0.85rem; color: var(--text-tertiary); margin-bottom: 1rem;">
+            Bi-weekly essays on creative engineering, typography, and interface futures.
+          </p>
+          <form class="newsletter-form" id="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="your@email.com" required>
+            <button type="submit" class="btn btn-primary" style="padding: 0.75rem 1.25rem;">Join</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>&copy; 2026 AURA CREATIVE STUDIO INC. ALL RIGHTS RESERVED.</div>
+        <button id="back-to-top" class="back-to-top">
+          BACK TO TOP
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =================================================================
+       MODAL: Case Study Deep Dive
+       ================================================================= -->
+  <div id="case-study-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Case study details">
+    <div class="modal-container">
+      <button id="modal-close" class="modal-close-btn" aria-label="Close dialog">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div id="modal-body-content">
+        <!-- Injected dynamically via JS based on selected project -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/canvas.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
