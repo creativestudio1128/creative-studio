@@ -1,0 +1,3994 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA // Creative Studio — Digital Experiences & Brand Innovation</title>
+  <meta name="description" content="Award-winning creative studio crafting iconic digital experiences, boundary-pushing brands & high-converting immersive products.">
+  <style>
+/* ==========================================================================
+   AURA // CREATIVE STUDIO - Core Design System & Styles
+   ========================================================================== */
+
+/* --- Google Fonts & Reset --- */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap');
+
+:root {
+  /* Colors */
+  --bg-dark: #07070a;
+  --bg-card: rgba(18, 18, 24, 0.7);
+  --bg-card-hover: rgba(28, 28, 38, 0.85);
+  --bg-elevated: #111117;
+  
+  --accent-cyan: #00f2fe;
+  --accent-purple: #7928ca;
+  --accent-magenta: #ff0080;
+  --accent-lime: #10b981;
+  
+  --gradient-brand: linear-gradient(135deg, #00f2fe 0%, #4facfe 50%, #7928ca 100%);
+  --gradient-glow: linear-gradient(135deg, rgba(0,242,254,0.15), rgba(121,40,202,0.15));
+  --gradient-text: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
+  --gradient-accent-text: linear-gradient(135deg, #00f2fe 0%, #a855f7 60%, #ec4899 100%);
+
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-tertiary: #64748b;
+  --text-invert: #07070a;
+
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-highlight: rgba(255, 255, 255, 0.2);
+  --border-accent: rgba(0, 242, 254, 0.4);
+
+  /* Typography */
+  --font-display: 'Syne', system-ui, -apple-system, sans-serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Layout & Transitions */
+  --container-max: 1320px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-medium: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Selection */
+::selection {
+  background: var(--accent-cyan);
+  color: #000;
+}
+
+/* Typography Helpers */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+}
+
+/* --- Ambient Noise & Glow Orbs --- */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 999;
+}
+
+.ambient-blur {
+  position: fixed;
+  width: 50vw;
+  height: 50vw;
+  border-radius: 50%;
+  filter: blur(140px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.12;
+  transition: transform 1s ease-out;
+}
+.ambient-blur-1 {
+  top: -10vw;
+  left: -10vw;
+  background: radial-gradient(circle, #00f2fe, #7928ca);
+}
+.ambient-blur-2 {
+  bottom: 10vw;
+  right: -10vw;
+  background: radial-gradient(circle, #ff0080, #7928ca);
+}
+
+/* --- Custom Magnetic Cursor --- */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: width 0.15s ease, height 0.15s ease, opacity 0.15s ease, background 0.2s ease;
+}
+
+.cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease-out, width 0.25s ease, height 0.25s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.cursor-hover .cursor-follower {
+  width: 60px;
+  height: 60px;
+  border-color: var(--accent-cyan);
+  background: rgba(0, 242, 254, 0.08);
+  backdrop-filter: blur(2px);
+}
+.cursor-hover .cursor-dot {
+  background: var(--accent-cyan);
+  width: 4px;
+  height: 4px;
+}
+
+.cursor-text .cursor-follower {
+  width: 80px;
+  height: 80px;
+  background: #ffffff;
+  border-color: #ffffff;
+  mix-blend-mode: difference;
+}
+.cursor-text .cursor-dot {
+  opacity: 0;
+}
+
+@media (pointer: coarse) {
+  .cursor-dot, .cursor-follower {
+    display: none !important;
+  }
+}
+
+/* --- Navigation Header --- */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1.25rem 0;
+  transition: padding var(--transition-medium), background var(--transition-medium), backdrop-filter var(--transition-medium);
+}
+
+.site-header.scrolled {
+  padding: 0.75rem 0;
+  background: rgba(7, 7, 10, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+.brand-mark {
+  width: 32px;
+  height: 32px;
+  background: var(--gradient-brand);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+}
+.brand-mark svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: #000;
+  stroke-width: 2.5;
+}
+
+.brand-text span {
+  color: var(--text-tertiary);
+  font-weight: 400;
+  margin-left: 4px;
+  font-size: 0.9rem;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-link {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  position: relative;
+  padding: 0.5rem 0;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--accent-cyan);
+  transition: width var(--transition-fast);
+}
+.nav-link:hover {
+  color: #fff;
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+.nav-link.active {
+  color: #fff;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Status Pill */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: #34d399;
+}
+.status-dot {
+  width: 6px;
+  height: 6px;
+  background: #34d399;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #34d399;
+  animation: pulseDot 2s infinite ease-in-out;
+}
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* Audio Toggle Button */
+.audio-toggle-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.audio-toggle-btn:hover {
+  color: #fff;
+  border-color: var(--border-highlight);
+  background: rgba(255, 255, 255, 0.08);
+}
+.audio-toggle-btn.active {
+  color: var(--accent-cyan);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.25);
+}
+
+.sound-bars {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 14px;
+}
+.sound-bar {
+  width: 2px;
+  height: 12px;
+  background: currentColor;
+  border-radius: 1px;
+}
+.audio-toggle-btn.active .sound-bar:nth-child(1) { animation: soundWave 0.8s ease infinite alternate; }
+.audio-toggle-btn.active .sound-bar:nth-child(2) { animation: soundWave 1.1s ease infinite alternate 0.2s; }
+.audio-toggle-btn.active .sound-bar:nth-child(3) { animation: soundWave 0.9s ease infinite alternate 0.4s; }
+@keyframes soundWave {
+  0% { height: 4px; }
+  100% { height: 14px; }
+}
+
+/* Primary CTA Button */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1.6rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  position: relative;
+  transition: all var(--transition-fast);
+  border: none;
+  outline: none;
+}
+.btn-primary {
+  background: #ffffff;
+  color: #07070a;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+  background: #f1f5f9;
+}
+.btn-gradient {
+  background: var(--gradient-brand);
+  color: #000;
+  font-weight: 700;
+  box-shadow: 0 10px 30px rgba(0, 242, 254, 0.3);
+}
+.btn-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px rgba(0, 242, 254, 0.5);
+  filter: brightness(1.1);
+}
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(10px);
+}
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--border-highlight);
+  transform: translateY(-2px);
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem 0 4rem;
+  overflow: hidden;
+}
+
+#hero-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.hero-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1.1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-full);
+  font-size: 0.825rem;
+  color: #cbd5e1;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(8px);
+}
+.hero-pill-badge span.sparkle {
+  color: var(--accent-cyan);
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 6.5vw, 5.5rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.hero-title .gradient-text {
+  background: var(--gradient-accent-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  color: var(--text-secondary);
+  max-width: 680px;
+  margin: 0 auto 2.75rem;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin-bottom: 4.5rem;
+}
+
+.hero-metrics-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  padding: 2rem 2.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(16px);
+  text-align: left;
+}
+
+.metric-item {
+  border-right: 1px solid var(--border-subtle);
+  padding-right: 1.5rem;
+}
+.metric-item:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+.metric-value {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.2rem;
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+.metric-value span.highlight {
+  color: var(--accent-cyan);
+}
+.metric-label {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+/* --- Ticker / Logo Marquee --- */
+.marquee-section {
+  padding: 3rem 0;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(10, 10, 14, 0.4);
+  overflow: hidden;
+  position: relative;
+}
+
+.marquee-section::before,
+.marquee-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+.marquee-section::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-dark), transparent);
+}
+.marquee-section::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-dark), transparent);
+}
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  width: max-content;
+  animation: scrollMarquee 35s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.marquee-client {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-tertiary);
+  letter-spacing: 0.05em;
+  opacity: 0.6;
+  transition: opacity var(--transition-fast), color var(--transition-fast);
+}
+.marquee-client svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+.marquee-client:hover {
+  opacity: 1;
+  color: #fff;
+}
+
+@keyframes scrollMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* --- Section Header Utility --- */
+.section-header {
+  margin-bottom: 4rem;
+}
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+.section-tag::before {
+  content: '//';
+  opacity: 0.7;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin-bottom: 1rem;
+  line-height: 1.15;
+}
+
+.section-desc {
+  font-size: 1.1rem;
+  max-width: 600px;
+  color: var(--text-secondary);
+}
+
+/* --- Services & Capabilities --- */
+.services-section {
+  padding: 8rem 0;
+  position: relative;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.service-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition-medium), border-color var(--transition-medium), background var(--transition-medium);
+  backdrop-filter: blur(12px);
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--gradient-brand);
+  opacity: 0;
+  transition: opacity var(--transition-medium);
+}
+.service-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 242, 254, 0.3);
+  background: var(--bg-card-hover);
+}
+.service-card:hover::before {
+  opacity: 1;
+}
+
+.service-num {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--accent-cyan);
+  margin-bottom: 2rem;
+  display: block;
+}
+
+.service-icon-box {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.75rem;
+  color: #fff;
+  transition: all var(--transition-fast);
+}
+.service-card:hover .service-icon-box {
+  background: rgba(0, 242, 254, 0.1);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  transform: scale(1.08);
+}
+
+.service-name {
+  font-size: 1.75rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.service-description {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 2rem;
+}
+
+.service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag-badge {
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: #cbd5e1;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* --- Selected Works / Portfolio --- */
+.portfolio-section {
+  padding: 7rem 0 9rem;
+  position: relative;
+}
+
+.portfolio-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 0.6rem 1.25rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.filter-btn:hover {
+  color: #fff;
+  border-color: var(--border-highlight);
+}
+.filter-btn.active {
+  background: #ffffff;
+  color: #000;
+  border-color: #ffffff;
+  font-weight: 600;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+}
+
+.project-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform var(--transition-medium), border-color var(--transition-medium), box-shadow var(--transition-medium);
+  cursor: pointer;
+}
+.project-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+}
+
+.project-thumb {
+  position: relative;
+  height: 380px;
+  overflow: hidden;
+  background: #111116;
+}
+.project-thumb-visual {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-slow);
+  position: relative;
+}
+.project-card:hover .project-thumb-visual {
+  transform: scale(1.05);
+}
+
+.project-badge-corner {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  z-index: 5;
+  background: rgba(7, 7, 10, 0.7);
+  backdrop-filter: blur(10px);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #fff;
+  border: 1px solid var(--border-subtle);
+}
+
+.project-action-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 7, 10, 0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  z-index: 6;
+}
+.project-card:hover .project-action-overlay {
+  opacity: 1;
+}
+
+.project-view-btn {
+  padding: 0.8rem 1.6rem;
+  border-radius: var(--radius-full);
+  background: #ffffff;
+  color: #000;
+  font-weight: 700;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transform: translateY(10px);
+  transition: transform var(--transition-fast);
+}
+.project-card:hover .project-view-btn {
+  transform: translateY(0);
+}
+
+.project-details {
+  padding: 2rem 2.25rem;
+}
+
+.project-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.project-client {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+}
+
+.project-year {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+}
+
+.project-title {
+  font-size: 1.75rem;
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+
+.project-summary {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 1.5rem;
+}
+
+.project-footer-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* --- Interactive Scope & Cost Estimator --- */
+.estimator-section {
+  padding: 7rem 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(17, 17, 24, 0.4) 50%, transparent 100%);
+  position: relative;
+}
+
+.estimator-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 3.5rem;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+
+.estimator-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.estimator-options {
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+}
+
+.estimator-group-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.estimator-group-title span.step-num {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent-cyan);
+}
+
+.chips-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.estimator-chip {
+  padding: 0.7rem 1.25rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  user-select: none;
+}
+.estimator-chip:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+.estimator-chip.selected {
+  background: rgba(0, 242, 254, 0.12);
+  border-color: var(--accent-cyan);
+  color: #fff;
+}
+.estimator-chip svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Timeline Radio Group */
+.radio-cards-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.radio-card {
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--transition-fast);
+}
+.radio-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+.radio-card.selected {
+  border-color: var(--accent-cyan);
+  background: rgba(0, 242, 254, 0.08);
+}
+.radio-card .rc-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #fff;
+  margin-bottom: 0.25rem;
+}
+.radio-card .rc-desc {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+/* Calculation Result Card */
+.estimator-result-card {
+  background: linear-gradient(145deg, rgba(25, 25, 35, 0.9) 0%, rgba(15, 15, 22, 0.95) 100%);
+  border: 1px solid rgba(0, 242, 254, 0.25);
+  border-radius: var(--radius-lg);
+  padding: 2.75rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 242, 254, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+.estimator-result-card::after {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(0, 242, 254, 0.25), transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.calc-header {
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.calc-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+.calc-price {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.03em;
+}
+
+.calc-breakdown-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 2rem;
+}
+.calc-breakdown-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+}
+.calc-breakdown-item .item-label {
+  color: var(--text-secondary);
+}
+.calc-breakdown-item .item-val {
+  color: #fff;
+  font-weight: 600;
+  font-family: var(--font-mono);
+}
+
+/* --- Agency Process / Workflow --- */
+.process-section {
+  padding: 8rem 0;
+  position: relative;
+}
+
+.process-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem;
+  position: relative;
+}
+
+.process-step-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2rem;
+  position: relative;
+  transition: transform var(--transition-medium), border-color var(--transition-medium);
+}
+.process-step-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.step-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+.step-number {
+  font-family: var(--font-mono);
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.15);
+  transition: color var(--transition-fast);
+}
+.process-step-card:hover .step-number {
+  color: var(--accent-cyan);
+}
+
+.step-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.step-title {
+  font-size: 1.35rem;
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+
+.step-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* --- Awards & Recognition --- */
+.awards-section {
+  padding: 6rem 0;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.awards-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.award-row {
+  display: grid;
+  grid-template-columns: 120px 2fr 2fr 1fr;
+  align-items: center;
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background var(--transition-fast), padding-left var(--transition-fast);
+}
+.award-row:hover {
+  background: rgba(255, 255, 255, 0.02);
+  padding-left: 1.75rem;
+}
+.award-year {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent-cyan);
+}
+.award-name {
+  font-weight: 700;
+  color: #fff;
+  font-size: 1.1rem;
+}
+.award-project {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+.award-category {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  text-align: right;
+  text-transform: uppercase;
+}
+
+/* --- Testimonials / Client Quotes --- */
+.testimonials-section {
+  padding: 8rem 0;
+  position: relative;
+}
+
+.testimonial-carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonial-track {
+  display: flex;
+  transition: transform var(--transition-medium);
+}
+
+.testimonial-card {
+  min-width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 4rem;
+  backdrop-filter: blur(16px);
+  position: relative;
+}
+
+.quote-icon {
+  width: 48px;
+  height: 48px;
+  fill: var(--accent-cyan);
+  opacity: 0.4;
+  margin-bottom: 2rem;
+}
+
+.quote-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.5vw, 2rem);
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.4;
+  margin-bottom: 2.5rem;
+}
+
+.author-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.author-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-cyan);
+  object-fit: cover;
+  background: #222;
+}
+
+.author-name {
+  font-weight: 700;
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.author-role {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.carousel-controls {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.carousel-nav-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.carousel-nav-btn:hover {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+}
+
+/* --- Team & Studio Culture --- */
+.team-section {
+  padding: 7rem 0;
+  position: relative;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.team-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform var(--transition-medium);
+}
+.team-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.team-avatar-box {
+  height: 260px;
+  background: #181820;
+  position: relative;
+  overflow: hidden;
+}
+.team-avatar-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+  transition: filter var(--transition-medium), transform var(--transition-medium);
+}
+.team-card:hover .team-avatar-box img {
+  filter: grayscale(0%);
+  transform: scale(1.04);
+}
+
+.team-info {
+  padding: 1.5rem;
+}
+
+.team-name {
+  font-size: 1.15rem;
+  color: #fff;
+  margin-bottom: 0.25rem;
+}
+
+.team-role {
+  font-size: 0.825rem;
+  color: var(--accent-cyan);
+  font-family: var(--font-mono);
+  margin-bottom: 0.75rem;
+}
+
+.team-socials {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+.team-socials a {
+  color: var(--text-tertiary);
+  font-size: 0.8rem;
+  transition: color var(--transition-fast);
+}
+.team-socials a:hover {
+  color: #fff;
+}
+
+/* --- Interactive Contact / Project Inquiry Form --- */
+.contact-section {
+  padding: 8rem 0;
+  position: relative;
+}
+
+.contact-wrapper {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 4.5rem;
+  backdrop-filter: blur(20px);
+  position: relative;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 5rem;
+}
+
+.contact-info-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contact-meta-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.meta-item-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
+
+.meta-item-val {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* Studio Clocks */
+.world-clocks {
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-subtle);
+}
+.world-clocks-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+.clocks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.clock-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem;
+}
+.clock-city {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.2rem;
+}
+.clock-time {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* Form Elements */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+.form-input, .form-textarea, .form-select {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+  outline: none;
+}
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+  border-color: var(--accent-cyan);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.15);
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.budget-buttons-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+.budget-btn {
+  padding: 0.85rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--transition-fast);
+}
+.budget-btn:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: #fff;
+}
+.budget-btn.active {
+  border-color: var(--accent-cyan);
+  background: rgba(0, 242, 254, 0.1);
+  color: #fff;
+  font-weight: 600;
+}
+
+.form-status-msg {
+  font-size: 0.875rem;
+  display: none;
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+}
+.form-status-msg.success {
+  display: block;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid #10b981;
+  color: #34d399;
+}
+.form-status-msg.error {
+  display: block;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid #ef4444;
+  color: #f87171;
+}
+
+/* --- Footer --- */
+.site-footer {
+  padding: 6rem 0 3rem;
+  border-top: 1px solid var(--border-subtle);
+  background: #040406;
+}
+
+.footer-cta {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 5rem;
+}
+
+.footer-cta-title {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin-bottom: 2rem;
+  line-height: 1.05;
+}
+
+.footer-columns {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 3rem;
+  margin-bottom: 5rem;
+}
+
+.footer-brand-bio {
+  max-width: 320px;
+  color: var(--text-tertiary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-top: 1rem;
+}
+
+.footer-col-title {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1.5rem;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+.footer-links a {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  transition: color var(--transition-fast);
+}
+.footer-links a:hover {
+  color: var(--accent-cyan);
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 0.5rem;
+}
+.newsletter-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: #fff;
+  font-size: 0.85rem;
+  outline: none;
+}
+.newsletter-input:focus {
+  border-color: var(--accent-cyan);
+}
+
+.footer-bottom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+}
+
+.back-to-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+.back-to-top:hover {
+  color: #fff;
+}
+
+/* --- Modals: Case Study & Video Reel --- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 7, 10, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-medium);
+}
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-container {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8);
+  transform: translateY(20px) scale(0.97);
+  transition: transform var(--transition-medium);
+}
+.modal-overlay.active .modal-container {
+  transform: translateY(0) scale(1);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-subtle);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all var(--transition-fast);
+}
+.modal-close-btn:hover {
+  background: #fff;
+  color: #000;
+}
+
+.modal-hero-cover {
+  height: 340px;
+  width: 100%;
+  background: #1a1a24;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-body {
+  padding: 3rem;
+}
+
+.modal-tags {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.modal-title {
+  font-size: 2.25rem;
+  color: #fff;
+  margin-bottom: 1.25rem;
+}
+
+.modal-metrics-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+.modal-metric-val {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+}
+.modal-metric-sub {
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+}
+
+.modal-content-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+  margin-bottom: 2.5rem;
+}
+
+.modal-section-h {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+
+.modal-quote-box {
+  background: rgba(0, 242, 254, 0.04);
+  border-left: 3px solid var(--accent-cyan);
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.modal-quote-box p {
+  color: #e2e8f0;
+  font-style: italic;
+  font-size: 0.95rem;
+}
+
+/* Mobile Offcanvas Drawer */
+.mobile-nav-drawer {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 7, 10, 0.98);
+  backdrop-filter: blur(25px);
+  z-index: 9998;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem 2rem;
+  transform: translateX(100%);
+  transition: transform var(--transition-medium);
+}
+.mobile-nav-drawer.active {
+  transform: translateX(0);
+}
+.mobile-nav-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.mobile-nav-link {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #cbd5e1;
+  transition: color var(--transition-fast);
+}
+.mobile-nav-link:hover {
+  color: var(--accent-cyan);
+}
+.mobile-drawer-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* --- Responsive Media Queries --- */
+@media (max-width: 1024px) {
+  .services-grid,
+  .portfolio-grid,
+  .estimator-grid,
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .process-steps-grid,
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .footer-columns {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-menu, .nav-actions .btn-primary, .status-pill {
+    display: none;
+  }
+  .mobile-menu-btn {
+    display: block;
+  }
+  .hero-metrics-bar {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1.5rem;
+  }
+  .award-row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  .award-category {
+    text-align: left;
+  }
+  .testimonial-card {
+    padding: 2rem;
+  }
+  .process-steps-grid,
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+  .contact-wrapper {
+    padding: 2rem;
+  }
+  .footer-columns {
+    grid-template-columns: 1fr;
+  }
+  .footer-bottom-bar {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+  .modal-content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+</style>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%2300f2fe'/><path d='M30 70 L50 30 L70 70 Z' fill='%2307070a'/></svg>">
+</head>
+<body>
+
+  <!-- Ambient Light Effects & Noise Overlay -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <div class="ambient-blur ambient-blur-1" aria-hidden="true"></div>
+  <div class="ambient-blur ambient-blur-2" aria-hidden="true"></div>
+
+  <!-- Custom Magnetic Cursor -->
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-follower" aria-hidden="true"></div>
+
+  <!-- Site Navigation Header -->
+  <header class="site-header" id="header">
+    <div class="container nav-inner">
+      <a href="#hero" class="brand-logo" aria-label="Aura Creative Home">
+        <div class="brand-mark">
+          <svg viewBox="0 0 24 24">
+            <polygon points="12 2 2 22 22 22 12 2"></polygon>
+          </svg>
+        </div>
+        <div class="brand-text">AURA<span>// STUDIO</span></div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li><a href="#services" class="nav-link">Services</a></li>
+          <li><a href="#portfolio" class="nav-link">Selected Work</a></li>
+          <li><a href="#estimator" class="nav-link">Scope Calculator</a></li>
+          <li><a href="#process" class="nav-link">Approach</a></li>
+          <li><a href="#studio" class="nav-link">Studio</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Nav Actions & Audio Toggle -->
+      <div class="nav-actions">
+        <div class="status-pill" title="Current studio bandwidth status">
+          <span class="status-dot"></span>
+          <span>AVAILABLE FOR Q2/Q3</span>
+        </div>
+
+        <button id="audio-toggle" class="audio-toggle-btn" title="Toggle tactile sound effects" aria-label="Toggle Sound">
+          <div class="sound-bars">
+            <div class="sound-bar"></div>
+            <div class="sound-bar"></div>
+            <div class="sound-bar"></div>
+          </div>
+        </button>
+
+        <a href="#contact" class="btn btn-primary">Start a Project</a>
+
+        <button id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Open Mobile Menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Offcanvas Drawer -->
+  <div id="mobile-drawer" class="mobile-nav-drawer" aria-hidden="true">
+    <button id="mobile-drawer-close" class="mobile-drawer-close" aria-label="Close menu">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <ul class="mobile-nav-links">
+      <li><a href="#services" class="mobile-nav-link">01. Services</a></li>
+      <li><a href="#portfolio" class="mobile-nav-link">02. Selected Work</a></li>
+      <li><a href="#estimator" class="mobile-nav-link">03. Scope Calculator</a></li>
+      <li><a href="#process" class="mobile-nav-link">04. Our Process</a></li>
+      <li><a href="#studio" class="mobile-nav-link">05. About Studio</a></li>
+      <li><a href="#contact" class="mobile-nav-link">06. Start a Project</a></li>
+    </ul>
+    <div style="margin-top: 3rem;">
+      <a href="#contact" class="btn btn-gradient" style="width: 100%;">Schedule Consultation</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- =================================================================
+         HERO SECTION: Bold Typography + Interactive Physics Canvas
+         ================================================================= -->
+    <section class="hero-section" id="hero">
+      <canvas id="hero-canvas"></canvas>
+
+      <div class="container hero-content">
+        <div class="hero-pill-badge">
+          <span class="sparkle">✦</span>
+          <span>Awwwards Independent Agency of the Year Nominee</span>
+        </div>
+
+        <h1 class="hero-title">
+          We Design the <br>
+          <span class="gradient-text">Digital Future.</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          A boutique creative collective engineering iconic digital identities, interactive 3D web applications, and immersive flagships for category-defining pioneers.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#portfolio" class="btn btn-primary">
+            Explore Portfolio
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+          <a href="#estimator" class="btn btn-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+              <line x1="8" y1="6" x2="16" y2="6"></line>
+              <line x1="16" y1="14" x2="16" y2="18"></line>
+              <path d="M16 10h.01"></path>
+              <path d="M12 10h.01"></path>
+              <path d="M8 10h.01"></path>
+              <path d="M12 14h.01"></path>
+              <path d="M8 14h.01"></path>
+              <path d="M12 18h.01"></path>
+              <path d="M8 18h.01"></path>
+            </svg>
+            Scope Calculator
+          </a>
+        </div>
+
+        <!-- Key Agency Metrics -->
+        <div class="hero-metrics-bar">
+          <div class="metric-item">
+            <div class="metric-value">18<span class="highlight">+</span></div>
+            <div class="metric-label">Awwwards & FWA Honors</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-value">140<span class="highlight">+</span></div>
+            <div class="metric-label">Digital Products Shipped</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-value">$320<span class="highlight">M</span></div>
+            <div class="metric-label">Client Growth Valuation</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-value">99.4<span class="highlight">%</span></div>
+            <div class="metric-label">Client Partnership Satisfaction</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         CLIENT LOGO MARQUEE: Social Proof & Prestige
+         ================================================================= -->
+    <section class="marquee-section" aria-label="Trusted by industry leaders">
+      <div class="marquee-track">
+        <!-- Client Brand 1 -->
+        <div class="marquee-client">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/><path d="M7 9a10 10 0 0 1 10 2M8 12a7 7 0 0 1 8 1.5M9 15a4 4 0 0 1 6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          SPOTIFY
+        </div>
+        <!-- Client Brand 2 -->
+        <div class="marquee-client">
+          <svg viewBox="0 0 24 24"><path d="M4 15l15-7-10 12-1-5z" fill="currentColor"/></svg>
+          LINEAR
+        </div>
+        <!-- Client Brand 3 -->
+        <div class="marquee-client">
+          <svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="4"/><circle cx="16" cy="8" r="4"/><circle cx="12" cy="16" r="4"/></svg>
+          MONOLITH
+        </div>
+        <!-- Client Brand 4 -->
+        <div class="marquee-client">
+          <svg viewBox="0 0 24 24"><path d="M2 17l10-14 10 14H2z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          STRIPE
+        </div>
+        <!-- Client Brand 5 -->
+        <div class="marquee-client">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          OPENAI LABS
+        </div>
+        <!-- Client Brand 6 -->
+        <div class="marquee-client">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" fill="none"/><line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2"/><line x1="12" y1="3" x2="12" y2="21" stroke="currentColor" stroke-width="2"/></svg>
+          POLESTAR
+        </div>
+        <!-- Client Brand 7 -->
+        <div class="marquee-client">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          FIGMA ECOSYSTEM
+        </div>
+        <!-- Repeat for seamless continuous loop -->
+        <div class="marquee-client">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/><path d="M7 9a10 10 0 0 1 10 2M8 12a7 7 0 0 1 8 1.5M9 15a4 4 0 0 1 6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          SPOTIFY
+        </div>
+        <div class="marquee-client">
+          <svg viewBox="0 0 24 24"><path d="M4 15l15-7-10 12-1-5z" fill="currentColor"/></svg>
+          LINEAR
+        </div>
+        <div class="marquee-client">
+          <svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="4"/><circle cx="16" cy="8" r="4"/><circle cx="12" cy="16" r="4"/></svg>
+          MONOLITH
+        </div>
+        <div class="marquee-client">
+          <svg viewBox="0 0 24 24"><path d="M2 17l10-14 10 14H2z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          STRIPE
+        </div>
+        <div class="marquee-client">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          OPENAI LABS
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         SERVICES SECTION: Strategic Disciplines
+         ================================================================= -->
+    <section class="services-section" id="services">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Disciplines & Capabilities</div>
+          <h2 class="section-title">Engineered for Brands <br>Refusing to Settle.</h2>
+          <p class="section-desc">
+            We operate at the nexus of artistic direction and deep technical execution, providing full-lifecycle digital transformation.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <!-- Service 1 -->
+          <div class="service-card">
+            <span class="service-num">01 // IDENTITY</span>
+            <div class="service-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polygon points="12 6 16 14 8 14"></polygon>
+              </svg>
+            </div>
+            <h3 class="service-name">Brand Strategy & Visual Systems</h3>
+            <p class="service-description">
+              We define distinctive verbal and visual identities that resonate across every medium. From custom typography and color hierarchies to comprehensive design tokens.
+            </p>
+            <div class="service-tags">
+              <span class="tag-badge">Brand Architecture</span>
+              <span class="tag-badge">Custom Typography</span>
+              <span class="tag-badge">Design Systems</span>
+              <span class="tag-badge">Art Direction</span>
+            </div>
+          </div>
+
+          <!-- Service 2 -->
+          <div class="service-card">
+            <span class="service-num">02 // DIGITAL PRODUCT</span>
+            <div class="service-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </div>
+            <h3 class="service-name">UI/UX & SaaS Experience Design</h3>
+            <p class="service-description">
+              We transform complex workflows into frictionless, intuitive digital interfaces. Deep user research, behavioral flows, and micro-interactions that drive adoption and retention.
+            </p>
+            <div class="service-tags">
+              <span class="tag-badge">SaaS Workbenches</span>
+              <span class="tag-badge">Complex Data Viz</span>
+              <span class="tag-badge">High-Fidelity Prototypes</span>
+              <span class="tag-badge">UX Auditing</span>
+            </div>
+          </div>
+
+          <!-- Service 3 -->
+          <div class="service-card">
+            <span class="service-num">03 // CREATIVE TECH</span>
+            <div class="service-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </div>
+            <h3 class="service-name">Creative Web & WebGL Engineering</h3>
+            <p class="service-description">
+              Bleeding-edge frontend engineering with 60fps animations, WebGL particle physics, and Headless architectures built for blistering performance and global scale.
+            </p>
+            <div class="service-tags">
+              <span class="tag-badge">WebGL / Three.js</span>
+              <span class="tag-badge">Next.js & React</span>
+              <span class="tag-badge">Creative Shaders</span>
+              <span class="tag-badge">Sub-Second Load Times</span>
+            </div>
+          </div>
+
+          <!-- Service 4 -->
+          <div class="service-card">
+            <span class="service-num">04 // 3D & MOTION</span>
+            <div class="service-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+              </svg>
+            </div>
+            <h3 class="service-name">CGI, 3D Worlds & Motion Direction</h3>
+            <p class="service-description">
+              Photorealistic product rendering, procedural 3D simulations, and cinematic brand launch films that capture imagination and elevate perceived market value.
+            </p>
+            <div class="service-tags">
+              <span class="tag-badge">Product CGI</span>
+              <span class="tag-badge">Real-time 3D</span>
+              <span class="tag-badge">Haptic Sound Design</span>
+              <span class="tag-badge">Campaign Direction</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         PORTFOLIO SECTION: Filterable Showcase with Case Study Modals
+         ================================================================= -->
+    <section class="portfolio-section" id="portfolio">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Featured Case Studies</div>
+          <h2 class="section-title">Selected Works <br>That Made History.</h2>
+          <p class="section-desc">
+            Explore our curated selection of flagship projects. Click any project to inspect the strategic challenge, technical architecture, and impact.
+          </p>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="portfolio-filter-bar" role="tablist">
+          <button class="filter-btn active" data-filter="all">All Projects (6)</button>
+          <button class="filter-btn" data-filter="branding">Branding & Identity</button>
+          <button class="filter-btn" data-filter="web">WebGL & 3D Web</button>
+          <button class="filter-btn" data-filter="product">Product & UI/UX</button>
+          <button class="filter-btn" data-filter="motion">Motion & Hardware</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="portfolio-grid">
+          <!-- Project 1: Neura AI -->
+          <article class="project-card" data-category="web product" data-project="neura">
+            <div class="project-thumb">
+              <div class="project-badge-corner">AI & WEBGL</div>
+              <div class="project-thumb-visual" style="background: radial-gradient(circle at 70% 30%, #00f2fe33, #07070d 80%);">
+                <!-- Generative SVG Mockup Graphic -->
+                <svg width="80%" height="80%" viewBox="0 0 400 240" fill="none">
+                  <rect x="20" y="20" width="360" height="200" rx="12" fill="#121218" stroke="#00f2fe" stroke-width="1.5" stroke-opacity="0.4"/>
+                  <circle cx="80" cy="120" r="40" fill="url(#p1-grad)" opacity="0.8"/>
+                  <path d="M140 80h180M140 110h120M140 140h150M140 170h90" stroke="#475569" stroke-width="4" stroke-linecap="round"/>
+                  <circle cx="340" cy="50" r="8" fill="#00f2fe"/>
+                  <defs>
+                    <linearGradient id="p1-grad" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="#00f2fe"/>
+                      <stop offset="100%" stop-color="#7928ca"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <div class="project-action-overlay">
+                <span class="project-view-btn">
+                  View Case Study
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </span>
+              </div>
+            </div>
+            <div class="project-details">
+              <div class="project-header-row">
+                <span class="project-client">NEURA AI</span>
+                <span class="project-year">2025</span>
+              </div>
+              <h3 class="project-title">Next-Gen Spatial Computing & AI Interface</h3>
+              <p class="project-summary">A groundbreaking WebGL design system and interactive multi-modal prompt canvas for foundational AI models.</p>
+              <div class="project-footer-tags">
+                <span class="tag-badge">WebGL 3D</span>
+                <span class="tag-badge">AI Platform</span>
+                <span class="tag-badge">+340% Adoption</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2: Chronos Horology -->
+          <article class="project-card" data-category="branding web" data-project="chronos">
+            <div class="project-thumb">
+              <div class="project-badge-corner">LUXURY & E-COM</div>
+              <div class="project-thumb-visual" style="background: radial-gradient(circle at 30% 70%, #f59e0b22, #07070d 80%);">
+                <svg width="80%" height="80%" viewBox="0 0 400 240" fill="none">
+                  <rect x="20" y="20" width="360" height="200" rx="12" fill="#151412" stroke="#f59e0b" stroke-width="1.5" stroke-opacity="0.3"/>
+                  <circle cx="200" cy="120" r="60" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4 4"/>
+                  <circle cx="200" cy="120" r="45" stroke="#fff" stroke-width="1" opacity="0.6"/>
+                  <line x1="200" y1="120" x2="200" y2="85" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="200" y1="120" x2="230" y2="120" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="project-action-overlay">
+                <span class="project-view-btn">
+                  View Case Study
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </span>
+              </div>
+            </div>
+            <div class="project-details">
+              <div class="project-header-row">
+                <span class="project-client">CHRONOS SWISS</span>
+                <span class="project-year">2025</span>
+              </div>
+              <h3 class="project-title">Haute Horlogerie 3D Configurator</h3>
+              <p class="project-summary">Interactive real-time watch assembly and headless luxury commerce experience with 60fps tourbillon physics.</p>
+              <div class="project-footer-tags">
+                <span class="tag-badge">3D Configurator</span>
+                <span class="tag-badge">Headless Commerce</span>
+                <span class="tag-badge">+84% Lift</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3: Synapse Cloud -->
+          <article class="project-card" data-category="product" data-project="synapse">
+            <div class="project-thumb">
+              <div class="project-badge-corner">DEV TOOLS & SAAS</div>
+              <div class="project-thumb-visual" style="background: radial-gradient(circle at 50% 50%, #8b5cf622, #07070d 80%);">
+                <svg width="80%" height="80%" viewBox="0 0 400 240" fill="none">
+                  <rect x="20" y="20" width="360" height="200" rx="12" fill="#13121b" stroke="#8b5cf6" stroke-width="1.5" stroke-opacity="0.3"/>
+                  <path d="M50 160 L100 120 L160 145 L220 90 L280 115 L350 60" stroke="#8b5cf6" stroke-width="3" fill="none"/>
+                  <circle cx="220" cy="90" r="5" fill="#00f2fe"/>
+                  <circle cx="350" cy="60" r="5" fill="#8b5cf6"/>
+                  <rect x="50" y="50" width="80" height="20" rx="4" fill="#2d2b45"/>
+                </svg>
+              </div>
+              <div class="project-action-overlay">
+                <span class="project-view-btn">
+                  View Case Study
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </span>
+              </div>
+            </div>
+            <div class="project-details">
+              <div class="project-header-row">
+                <span class="project-client">SYNAPSE CLOUD</span>
+                <span class="project-year">2024</span>
+              </div>
+              <h3 class="project-title">Enterprise Cloud Telemetry Workbench</h3>
+              <p class="project-summary">High-density visual telemetry platform for microservices engineers, handling 100M+ real-time events.</p>
+              <div class="project-footer-tags">
+                <span class="tag-badge">Data Visualization</span>
+                <span class="tag-badge">Design System</span>
+                <span class="tag-badge">3.2x ARR</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 4: Solaris Motors -->
+          <article class="project-card" data-category="motion web" data-project="solaris">
+            <div class="project-thumb">
+              <div class="project-badge-corner">AUTOMOTIVE & CGI</div>
+              <div class="project-thumb-visual" style="background: radial-gradient(circle at 60% 40%, #ec489922, #07070d 80%);">
+                <svg width="80%" height="80%" viewBox="0 0 400 240" fill="none">
+                  <rect x="20" y="20" width="360" height="200" rx="12" fill="#161118" stroke="#ec4899" stroke-width="1.5" stroke-opacity="0.3"/>
+                  <path d="M70 145 C120 145 150 95 240 95 C290 95 330 135 340 145 Z" stroke="#ec4899" stroke-width="2.5" fill="none"/>
+                  <circle cx="120" cy="150" r="18" stroke="#fff" stroke-width="2"/>
+                  <circle cx="280" cy="150" r="18" stroke="#fff" stroke-width="2"/>
+                </svg>
+              </div>
+              <div class="project-action-overlay">
+                <span class="project-view-btn">
+                  View Case Study
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </span>
+              </div>
+            </div>
+            <div class="project-details">
+              <div class="project-header-row">
+                <span class="project-client">SOLARIS MOTORS</span>
+                <span class="project-year">2024</span>
+              </div>
+              <h3 class="project-title">Hypercar Digital Rollout & Physics Sim</h3>
+              <p class="project-summary">Wind-tunnel aerodynamic simulations and dynamic audio synthesis for an all-electric hypercar debut.</p>
+              <div class="project-footer-tags">
+                <span class="tag-badge">WebGL Physics</span>
+                <span class="tag-badge">Motion Direction</span>
+                <span class="tag-badge">2,400+ Pre-orders</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 5: Metaform Architecture -->
+          <article class="project-card" data-category="branding web" data-project="metaform">
+            <div class="project-thumb">
+              <div class="project-badge-corner">SPATIAL & BRAND</div>
+              <div class="project-thumb-visual" style="background: radial-gradient(circle at 40% 60%, #10b98122, #07070d 80%);">
+                <svg width="80%" height="80%" viewBox="0 0 400 240" fill="none">
+                  <rect x="20" y="20" width="360" height="200" rx="12" fill="#111614" stroke="#10b981" stroke-width="1.5" stroke-opacity="0.3"/>
+                  <polygon points="200,60 300,160 100,160" stroke="#10b981" stroke-width="2" fill="none"/>
+                  <polygon points="200,90 270,160 130,160" stroke="#fff" stroke-width="1" stroke-opacity="0.5" fill="none"/>
+                </svg>
+              </div>
+              <div class="project-action-overlay">
+                <span class="project-view-btn">
+                  View Case Study
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </span>
+              </div>
+            </div>
+            <div class="project-details">
+              <div class="project-header-row">
+                <span class="project-client">METAFORM</span>
+                <span class="project-year">2024</span>
+              </div>
+              <h3 class="project-title">Generative Architecture Spatial Showcase</h3>
+              <p class="project-summary">Monolithic continuous-scroll web portal with structural wireframes and interactive architectural blueprints.</p>
+              <div class="project-footer-tags">
+                <span class="tag-badge">Architectural Wireframes</span>
+                <span class="tag-badge">Editorial Web</span>
+                <span class="tag-badge">$45M Pipeline</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 6: Vox Acoustics -->
+          <article class="project-card" data-category="motion product" data-project="vox">
+            <div class="project-thumb">
+              <div class="project-badge-corner">HARDWARE & AUDIO</div>
+              <div class="project-thumb-visual" style="background: radial-gradient(circle at 50% 50%, #38bdf822, #07070d 80%);">
+                <svg width="80%" height="80%" viewBox="0 0 400 240" fill="none">
+                  <rect x="20" y="20" width="360" height="200" rx="12" fill="#111418" stroke="#38bdf8" stroke-width="1.5" stroke-opacity="0.3"/>
+                  <path d="M50 120 Q100 60, 150 120 T250 120 T350 120" stroke="#38bdf8" stroke-width="2.5" fill="none"/>
+                  <path d="M50 120 Q100 160, 150 120 T250 120 T350 120" stroke="#8b5cf6" stroke-width="1.5" fill="none" opacity="0.7"/>
+                </svg>
+              </div>
+              <div class="project-action-overlay">
+                <span class="project-view-btn">
+                  View Case Study
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </span>
+              </div>
+            </div>
+            <div class="project-details">
+              <div class="project-header-row">
+                <span class="project-client">VOX ACOUSTICS</span>
+                <span class="project-year">2024</span>
+              </div>
+              <h3 class="project-title">Interactive Soundwave Visualizer & 3D CGI</h3>
+              <p class="project-summary">Interactive browser frequency spectrum analyzer and photorealistic exploded hardware 3D animations.</p>
+              <div class="project-footer-tags">
+                <span class="tag-badge">Web Audio API</span>
+                <span class="tag-badge">Product 3D</span>
+                <span class="tag-badge">Webby Award</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         INTERACTIVE ESTIMATOR: Real-time Budget & Timeline Calculator
+         ================================================================= -->
+    <section class="estimator-section" id="estimator">
+      <div class="container">
+        <div class="estimator-box">
+          <div class="section-header" style="margin-bottom: 2.5rem;">
+            <div class="section-tag">Interactive Planner</div>
+            <h2 class="section-title">Calculate Your Project Scope.</h2>
+            <p class="section-desc">
+              Select your requirements and preferred deployment timeline to get an instant budget range and execution roadmap.
+            </p>
+          </div>
+
+          <div class="estimator-grid">
+            <div class="estimator-options">
+              <!-- Step 1: Services Selection -->
+              <div>
+                <h4 class="estimator-group-title">
+                  <span class="step-num">01 //</span> Select Scope Deliverables
+                </h4>
+                <div class="chips-container">
+                  <div class="estimator-chip selected" data-cost="8000" data-name="Brand Strategy & Identity">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    Brand Identity & System
+                  </div>
+                  <div class="estimator-chip selected" data-cost="14000" data-name="UI/UX & Web Design">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    UI/UX & Creative Direction
+                  </div>
+                  <div class="estimator-chip selected" data-cost="16000" data-name="WebGL & 3D Interactive">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    WebGL & 3D Experiences
+                  </div>
+                  <div class="estimator-chip" data-cost="18000" data-name="Full-Stack Dev & CMS">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    Full-Stack & Headless CMS
+                  </div>
+                  <div class="estimator-chip" data-cost="10000" data-name="CGI Motion & Brand Film">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    CGI Motion & Sound Design
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 2: Timeline Preference -->
+              <div>
+                <h4 class="estimator-group-title">
+                  <span class="step-num">02 //</span> Preferred Delivery Pace
+                </h4>
+                <div class="radio-cards-row">
+                  <div class="radio-card timeline-card" data-mode="sprint">
+                    <div class="rc-title">Sprint</div>
+                    <div class="rc-desc">4 - 6 Weeks (Rush)</div>
+                  </div>
+                  <div class="radio-card timeline-card selected" data-mode="standard">
+                    <div class="rc-title">Standard</div>
+                    <div class="rc-desc">8 - 10 Weeks</div>
+                  </div>
+                  <div class="radio-card timeline-card" data-mode="flexible">
+                    <div class="rc-title">Quarterly</div>
+                    <div class="rc-desc">12 - 16 Weeks</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Estimated Output Result Card -->
+            <div class="estimator-result-card">
+              <div class="calc-header">
+                <div class="calc-label">Estimated Investment</div>
+                <div class="calc-price" id="calc-total-price">$38,000 - $49,000</div>
+              </div>
+
+              <ul class="calc-breakdown-list">
+                <li class="calc-breakdown-item">
+                  <span class="item-label">Estimated Delivery:</span>
+                  <span class="item-val" id="calc-est-timeline">8 - 10 Weeks (Standard)</span>
+                </li>
+                <li class="calc-breakdown-item">
+                  <span class="item-label">Team Allocation:</span>
+                  <span class="item-val">3 Senior Leads + Director</span>
+                </li>
+                <li class="calc-breakdown-item">
+                  <span class="item-label">Scope Complexity:</span>
+                  <span class="item-val" id="calc-deliverables-count">3 Selected Scope Items</span>
+                </li>
+                <li class="calc-breakdown-item">
+                  <span class="item-label">Includes:</span>
+                  <span class="item-val">Full Source Code & IP Handover</span>
+                </li>
+              </ul>
+
+              <button class="btn btn-gradient" id="apply-scope-to-contact" style="width: 100%;">
+                Book Scope Consultation
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         PROCESS SECTION: Structured 4-Phase Delivery Framework
+         ================================================================= -->
+    <section class="process-section" id="process">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">How We Work</div>
+          <h2 class="section-title">A Rigorous Process <br>With Zero Guesswork.</h2>
+          <p class="section-desc">
+            We don't do endless meetings or bureaucratic bloat. You collaborate directly with principal designers and senior engineers through sprint milestones.
+          </p>
+        </div>
+
+        <div class="process-steps-grid">
+          <!-- Step 1 -->
+          <div class="process-step-card">
+            <div class="step-header">
+              <span class="step-number">01</span>
+              <div class="step-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              </div>
+            </div>
+            <h3 class="step-title">Discovery & Strategy</h3>
+            <p class="step-desc">
+              Deep dive into user psychographics, competitor landscape, business models, and core differentiation narratives. We construct the strategic foundation before drawing a single pixel.
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="process-step-card">
+            <div class="step-header">
+              <span class="step-number">02</span>
+              <div class="step-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+              </div>
+            </div>
+            <h3 class="step-title">Art Direction & UI/UX</h3>
+            <p class="step-desc">
+              Visual moodboards, typography pairing, motion choreography, and interactive Figma prototypes. You test real functional user flows early to validate every decision.
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="process-step-card">
+            <div class="step-header">
+              <span class="step-number">03</span>
+              <div class="step-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+              </div>
+            </div>
+            <h3 class="step-title">Creative Engineering</h3>
+            <p class="step-desc">
+              Transforming designs into production code with smooth GSAP animations, WebGL shaders, rigorous cross-browser testing, SEO optimization, and sub-second load times.
+            </p>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="process-step-card">
+            <div class="step-header">
+              <span class="step-number">04</span>
+              <div class="step-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+            </div>
+            <h3 class="step-title">Launch & Handover</h3>
+            <p class="step-desc">
+              Stress testing, analytics calibration, complete documentation, video walkthroughs, and 100% intellectual property rights transfer directly to your organization.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         AWARDS SECTION: Industry Recognition
+         ================================================================= -->
+    <section class="awards-section" aria-label="Awards and honors">
+      <div class="container">
+        <div class="section-header" style="margin-bottom: 2.5rem;">
+          <div class="section-tag">Validation</div>
+          <h2 class="section-title">Recognized by the Best.</h2>
+        </div>
+
+        <div class="awards-table">
+          <div class="award-row">
+            <div class="award-year">2025</div>
+            <div class="award-name">Awwwards Site of the Month</div>
+            <div class="award-project">Chronos Swiss Luxury Configurator</div>
+            <div class="award-category">E-Commerce Innovation</div>
+          </div>
+          <div class="award-row">
+            <div class="award-year">2025</div>
+            <div class="award-name">FWA of the Day</div>
+            <div class="award-project">Neura AI Spatial Interface</div>
+            <div class="award-category">Artificial Intelligence UI</div>
+          </div>
+          <div class="award-row">
+            <div class="award-year">2024</div>
+            <div class="award-name">Red Dot: Best of the Best</div>
+            <div class="award-project">Solaris Hypercar Digital Campaign</div>
+            <div class="award-category">Automotive Motion</div>
+          </div>
+          <div class="award-row">
+            <div class="award-year">2024</div>
+            <div class="award-name">Webby Award Winner</div>
+            <div class="award-project">Vox Acoustic Engineering</div>
+            <div class="award-category">Best Visual Design</div>
+          </div>
+          <div class="award-row">
+            <div class="award-year">2024</div>
+            <div class="award-name">CSS Design Awards</div>
+            <div class="award-project">Metaform Spatial Studio</div>
+            <div class="award-category">UI/UX Innovation</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         TESTIMONIALS SECTION: Client Voice Carousel
+         ================================================================= -->
+    <section class="testimonials-section">
+      <div class="container">
+        <div class="testimonial-carousel">
+          <div class="testimonial-track">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-card">
+              <svg class="quote-icon" viewBox="0 0 24 24"><path d="M10 11H6a4 4 0 0 1 4-4V3a8 8 0 0 0-8 8v10h10V11zm14 0h-4a4 4 0 0 1 4-4V3a8 8 0 0 0-8 8v10h10V11z"/></svg>
+              <p class="quote-text">
+                "AURA doesn't just design interfaces — they build cultural artifacts. Their WebGL engineering gave our AI platform the visual credibility to close our $38M Series A."
+              </p>
+              <div class="author-row">
+                <div class="author-info">
+                  <div class="author-avatar" style="background: linear-gradient(135deg, #00f2fe, #7928ca); display: flex; align-items: center; justify-content: center; font-weight: bold; color: #fff;">ER</div>
+                  <div>
+                    <div class="author-name">Elena Rostova</div>
+                    <div class="author-role">Co-Founder & CEO, Neura AI</div>
+                  </div>
+                </div>
+                <div class="carousel-controls">
+                  <button class="carousel-nav-btn" id="testi-prev" aria-label="Previous quote">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                  </button>
+                  <button class="carousel-nav-btn" id="testi-next" aria-label="Next quote">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card">
+              <svg class="quote-icon" viewBox="0 0 24 24"><path d="M10 11H6a4 4 0 0 1 4-4V3a8 8 0 0 0-8 8v10h10V11zm14 0h-4a4 4 0 0 1 4-4V3a8 8 0 0 0-8 8v10h10V11z"/></svg>
+              <p class="quote-text">
+                "Working with AURA was the smoothest agency experience of my career. Zero fluff, razor-sharp execution, and our online conversion leaped +84% in the first quarter."
+              </p>
+              <div class="author-row">
+                <div class="author-info">
+                  <div class="author-avatar" style="background: linear-gradient(135deg, #f59e0b, #ef4444); display: flex; align-items: center; justify-content: center; font-weight: bold; color: #fff;">HM</div>
+                  <div>
+                    <div class="author-name">Henri de Montmirail</div>
+                    <div class="author-role">Managing Director, Chronos Switzerland</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="testimonial-card">
+              <svg class="quote-icon" viewBox="0 0 24 24"><path d="M10 11H6a4 4 0 0 1 4-4V3a8 8 0 0 0-8 8v10h10V11zm14 0h-4a4 4 0 0 1 4-4V3a8 8 0 0 0-8 8v10h10V11z"/></svg>
+              <p class="quote-text">
+                "Our engineers are notoriously picky about design systems. AURA crafted a workbench so intuitive and fast that our daily active usage surged 3x within 60 days."
+              </p>
+              <div class="author-row">
+                <div class="author-info">
+                  <div class="author-avatar" style="background: linear-gradient(135deg, #8b5cf6, #3b82f6); display: flex; align-items: center; justify-content: center; font-weight: bold; color: #fff;">DC</div>
+                  <div>
+                    <div class="author-name">David Chen</div>
+                    <div class="author-role">VP of Engineering, Synapse Cloud</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         STUDIO & TEAM: Meet the Creative Leads
+         ================================================================= -->
+    <section class="team-section" id="studio">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Leadership & Craft</div>
+          <h2 class="section-title">The Minds Behind <br>The Work.</h2>
+          <p class="section-desc">
+            A tight-knit global collective of seasoned creative directors, 3D technical artists, and systems architects.
+          </p>
+        </div>
+
+        <div class="team-grid">
+          <!-- Member 1 -->
+          <div class="team-card">
+            <div class="team-avatar-box">
+              <!-- Illustrated Modern Geometric Portrait -->
+              <svg width="100%" height="100%" viewBox="0 0 200 240" fill="none">
+                <rect width="200" height="240" fill="#181822"/>
+                <circle cx="100" cy="90" r="45" fill="#2d2d3d"/>
+                <path d="M40 210 C40 150 160 150 160 210 Z" fill="#242432"/>
+                <circle cx="100" cy="90" r="30" fill="url(#t-grad1)"/>
+                <defs>
+                  <linearGradient id="t-grad1" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#00f2fe"/>
+                    <stop offset="100%" stop-color="#3b82f6"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="team-info">
+              <h4 class="team-name">Astrid Thorne</h4>
+              <div class="team-role">EXECUTIVE CREATIVE DIRECTOR</div>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">Ex-Pentagram & Apple. Leading brand vision and avant-garde art direction.</p>
+              <div class="team-socials">
+                <a href="#studio">Twitter</a>
+                <a href="#studio">ReadCV</a>
+                <a href="#studio">LinkedIn</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Member 2 -->
+          <div class="team-card">
+            <div class="team-avatar-box">
+              <svg width="100%" height="100%" viewBox="0 0 200 240" fill="none">
+                <rect width="200" height="240" fill="#181822"/>
+                <circle cx="100" cy="90" r="45" fill="#2d2d3d"/>
+                <path d="M40 210 C40 150 160 150 160 210 Z" fill="#242432"/>
+                <circle cx="100" cy="90" r="30" fill="url(#t-grad2)"/>
+                <defs>
+                  <linearGradient id="t-grad2" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#7928ca"/>
+                    <stop offset="100%" stop-color="#ff0080"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="team-info">
+              <h4 class="team-name">Marcus Vance</h4>
+              <div class="team-role">HEAD OF CREATIVE TECH</div>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">WebGL specialist & Three.js contributor. Engineering high-performance physics.</p>
+              <div class="team-socials">
+                <a href="#studio">GitHub</a>
+                <a href="#studio">Twitter</a>
+                <a href="#studio">Codepen</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Member 3 -->
+          <div class="team-card">
+            <div class="team-avatar-box">
+              <svg width="100%" height="100%" viewBox="0 0 200 240" fill="none">
+                <rect width="200" height="240" fill="#181822"/>
+                <circle cx="100" cy="90" r="45" fill="#2d2d3d"/>
+                <path d="M40 210 C40 150 160 150 160 210 Z" fill="#242432"/>
+                <circle cx="100" cy="90" r="30" fill="url(#t-grad3)"/>
+                <defs>
+                  <linearGradient id="t-grad3" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#f59e0b"/>
+                    <stop offset="100%" stop-color="#ef4444"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="team-info">
+              <h4 class="team-name">Sora Takahashi</h4>
+              <div class="team-role">DIRECTOR OF 3D & MOTION</div>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">Spatial CGI artist and cinematic animator crafting hyperreal digital objects.</p>
+              <div class="team-socials">
+                <a href="#studio">Behance</a>
+                <a href="#studio">Instagram</a>
+                <a href="#studio">ArtStation</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Member 4 -->
+          <div class="team-card">
+            <div class="team-avatar-box">
+              <svg width="100%" height="100%" viewBox="0 0 200 240" fill="none">
+                <rect width="200" height="240" fill="#181822"/>
+                <circle cx="100" cy="90" r="45" fill="#2d2d3d"/>
+                <path d="M40 210 C40 150 160 150 160 210 Z" fill="#242432"/>
+                <circle cx="100" cy="90" r="30" fill="url(#t-grad4)"/>
+                <defs>
+                  <linearGradient id="t-grad4" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#10b981"/>
+                    <stop offset="100%" stop-color="#00f2fe"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="team-info">
+              <h4 class="team-name">Leila Morales</h4>
+              <div class="team-role">PRODUCT DESIGN LEAD</div>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">Specializing in enterprise developer tools, usability architectures, and design tokens.</p>
+              <div class="team-socials">
+                <a href="#studio">Dribbble</a>
+                <a href="#studio">Figma</a>
+                <a href="#studio">Substack</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         CONTACT & INQUIRY SECTION: High-Converting Form + Studio Clocks
+         ================================================================= -->
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="contact-wrapper">
+          <div class="contact-layout">
+            <!-- Left Column: Agency Info & World Clocks -->
+            <div class="contact-info-col">
+              <div>
+                <div class="section-tag">Let's Connect</div>
+                <h2 class="section-title" style="font-size: clamp(2rem, 3.5vw, 3rem);">Have a Vision? <br>Let's Realize It.</h2>
+                <p style="color: var(--text-secondary); margin-top: 1rem; line-height: 1.6;">
+                  We accept a maximum of 4 major client partnerships per quarter to maintain relentless craftsmanship and principal-led focus.
+                </p>
+
+                <div class="contact-meta-list">
+                  <div>
+                    <div class="meta-item-label">Direct Studio Email</div>
+                    <a href="mailto:hello@aura-creative.studio" class="meta-item-val" style="color: var(--accent-cyan);">hello@aura-creative.studio</a>
+                  </div>
+                  <div>
+                    <div class="meta-item-label">Headquarters</div>
+                    <div class="meta-item-val">742 Evergreen St, Soho, New York</div>
+                  </div>
+                  <div>
+                    <div class="meta-item-label">General Turnaround</div>
+                    <div class="meta-item-val">Within 24 Hours on Business Days</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Live Studio World Clocks -->
+              <div class="world-clocks">
+                <div class="world-clocks-title">Studio Time Zones</div>
+                <div class="clocks-grid">
+                  <div class="clock-card">
+                    <div class="clock-city">NEW YORK</div>
+                    <div class="clock-time" id="clock-ny">--:--:--</div>
+                  </div>
+                  <div class="clock-card">
+                    <div class="clock-city">LONDON</div>
+                    <div class="clock-time" id="clock-ldn">--:--:--</div>
+                  </div>
+                  <div class="clock-card">
+                    <div class="clock-city">TOKYO</div>
+                    <div class="clock-time" id="clock-tyo">--:--:--</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Interactive Form -->
+            <div>
+              <form class="contact-form" id="agency-inquiry-form">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+                  <div class="form-group">
+                    <label class="form-label" for="client-name">Your Name *</label>
+                    <input type="text" id="client-name" class="form-input" placeholder="e.g. Maya Lin" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="client-email">Work Email *</label>
+                    <input type="email" id="client-email" class="form-input" placeholder="maya@company.com" required>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="client-company">Company / Organization</label>
+                  <input type="text" id="client-company" class="form-input" placeholder="Company name & website">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Estimated Budget Target</label>
+                  <div class="budget-buttons-row">
+                    <button type="button" class="budget-btn" data-val="tier-1">$20k - $40k</button>
+                    <button type="button" class="budget-btn active" data-val="tier-2">$40k - $80k</button>
+                    <button type="button" class="budget-btn" data-val="tier-3">$80k - $150k+</button>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="project-brief">Project Overview & Objectives *</label>
+                  <textarea id="project-brief" class="form-textarea" placeholder="Describe what you want to build, key goals, deadlines, or links..." required></textarea>
+                </div>
+
+                <div id="form-status" class="form-status-msg"></div>
+
+                <button type="submit" class="btn btn-gradient" style="padding: 1.1rem; width: 100%;">
+                  Transmit Project Brief
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =================================================================
+       FOOTER: Editorial Closure & Quick Links
+       ================================================================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-cta">
+        <h2 class="footer-cta-title">Ready to Elevate <br>Your Next Chapter?</h2>
+        <a href="#contact" class="btn btn-primary" style="padding: 1rem 2.5rem; font-size: 1.05rem;">
+          Initiate Conversation
+        </a>
+      </div>
+
+      <div class="footer-columns">
+        <div>
+          <div class="brand-logo" style="margin-bottom: 0.5rem;">
+            <div class="brand-mark">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 2 22 22 22 12 2"></polygon></svg>
+            </div>
+            <div class="brand-text">AURA<span>// STUDIO</span></div>
+          </div>
+          <p class="footer-brand-bio">
+            Independent creative studio elevating brands through art direction, high-velocity engineering, and spatial computing.
+          </p>
+        </div>
+
+        <div>
+          <h5 class="footer-col-title">Navigation</h5>
+          <ul class="footer-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Selected Work</a></li>
+            <li><a href="#estimator">Scope Calculator</a></li>
+            <li><a href="#process">Our Approach</a></li>
+            <li><a href="#studio">The Team</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="footer-col-title">Social / Networks</h5>
+          <ul class="footer-links">
+            <li><a href="https://twitter.com" target="_blank" rel="noopener">X / Twitter</a></li>
+            <li><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://awwwards.com" target="_blank" rel="noopener">Awwwards Profile</a></li>
+            <li><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="footer-col-title">Dispatches (Newsletter)</h5>
+          <p style="font-size: 0.85rem; color: var(--text-tertiary); margin-bottom: 1rem;">
+            Bi-weekly essays on creative engineering, typography, and interface futures.
+          </p>
+          <form class="newsletter-form" id="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="your@email.com" required>
+            <button type="submit" class="btn btn-primary" style="padding: 0.75rem 1.25rem;">Join</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>&copy; 2026 AURA CREATIVE STUDIO INC. ALL RIGHTS RESERVED.</div>
+        <button id="back-to-top" class="back-to-top">
+          BACK TO TOP
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =================================================================
+       MODAL: Case Study Deep Dive
+       ================================================================= -->
+  <div id="case-study-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Case study details">
+    <div class="modal-container">
+      <button id="modal-close" class="modal-close-btn" aria-label="Close dialog">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div id="modal-body-content">
+        <!-- Injected dynamically via JS based on selected project -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  
+  <script>
+/**
+ * AURA // CREATIVE STUDIO - Interactive Hero Canvas
+ * Generative floating constellation & fluid physics with interactive mouse repulsion.
+ */
+
+(function () {
+  'use strict';
+
+  const canvas = document.getElementById('hero-canvas');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  let width, height, dpr;
+  let particles = [];
+  let mouse = { x: -1000, y: -1000, radius: 160, isDown: false };
+  let ripples = [];
+  let isVisible = true;
+  let animationFrameId;
+
+  // Configuration
+  const PARTICLE_COUNT_DESKTOP = 70;
+  const PARTICLE_COUNT_MOBILE = 35;
+  const MAX_CONNECT_DISTANCE = 140;
+
+  class Particle {
+    constructor(x, y) {
+      this.x = x || Math.random() * width;
+      this.y = y || Math.random() * height;
+      this.baseX = this.x;
+      this.baseY = this.y;
+      this.vx = (Math.random() - 0.5) * 0.7;
+      this.vy = (Math.random() - 0.5) * 0.7;
+      this.radius = Math.random() * 2 + 1.2;
+      this.colorTheme = Math.random();
+      this.alpha = Math.random() * 0.5 + 0.3;
+      this.glow = Math.random() * 8 + 4;
+    }
+
+    getColor() {
+      if (this.colorTheme > 0.6) {
+        return `rgba(0, 242, 254, ${this.alpha})`; // Cyan
+      } else if (this.colorTheme > 0.25) {
+        return `rgba(168, 85, 247, ${this.alpha})`; // Violet/Purple
+      } else {
+        return `rgba(255, 255, 255, ${this.alpha * 0.8})`; // Soft White
+      }
+    }
+
+    update() {
+      // Natural floating drift
+      this.x += this.vx;
+      this.y += this.vy;
+
+      // Wrap boundaries
+      if (this.x < -20) this.x = width + 20;
+      if (this.x > width + 20) this.x = -20;
+      if (this.y < -20) this.y = height + 20;
+      if (this.y > height + 20) this.y = -20;
+
+      // Mouse interaction (Repulsion with spring damping)
+      const dx = mouse.x - this.x;
+      const dy = mouse.y - this.y;
+      const distance = Math.hypot(dx, dy);
+
+      if (distance < mouse.radius) {
+        const force = (mouse.radius - distance) / mouse.radius;
+        const angle = Math.atan2(dy, dx);
+        this.x -= Math.cos(angle) * force * 5;
+        this.y -= Math.sin(angle) * force * 5;
+      }
+
+      // Ripple interaction from clicks
+      for (let i = 0; i < ripples.length; i++) {
+        const r = ripples[i];
+        const rdx = this.x - r.x;
+        const rdy = this.y - r.y;
+        const rDist = Math.hypot(rdx, rdy);
+        const waveDist = Math.abs(rDist - r.radius);
+
+        if (waveDist < 30) {
+          const push = (1 - waveDist / 30) * r.strength * 4;
+          const rAngle = Math.atan2(rdy, rdx);
+          this.x += Math.cos(rAngle) * push;
+          this.y += Math.sin(rAngle) * push;
+        }
+      }
+    }
+
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = this.getColor();
+      ctx.shadowColor = this.colorTheme > 0.6 ? '#00f2fe' : '#a855f7';
+      ctx.shadowBlur = this.glow;
+      ctx.fill();
+      ctx.shadowBlur = 0; // reset
+    }
+  }
+
+  function resize() {
+    dpr = window.devicePixelRatio || 1;
+    width = canvas.parentElement.offsetWidth;
+    height = canvas.parentElement.offsetHeight;
+
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    ctx.scale(dpr, dpr);
+
+    initParticles();
+  }
+
+  function initParticles() {
+    particles = [];
+    const count = width < 768 ? PARTICLE_COUNT_MOBILE : PARTICLE_COUNT_DESKTOP;
+    for (let i = 0; i < count; i++) {
+      particles.push(new Particle());
+    }
+  }
+
+  function drawConnections() {
+    const len = particles.length;
+    for (let i = 0; i < len; i++) {
+      for (let j = i + 1; j < len; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.hypot(dx, dy);
+
+        if (dist < MAX_CONNECT_DISTANCE) {
+          const alpha = (1 - dist / MAX_CONNECT_DISTANCE) * 0.18;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(168, 85, 247, ${alpha})`;
+          ctx.lineWidth = 0.85;
+          ctx.stroke();
+        }
+      }
+
+      // Connect to mouse if near
+      const mdx = particles[i].x - mouse.x;
+      const mdy = particles[i].y - mouse.y;
+      const mDist = Math.hypot(mdx, mdy);
+      if (mDist < mouse.radius) {
+        const mAlpha = (1 - mDist / mouse.radius) * 0.35;
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(mouse.x, mouse.y);
+        ctx.strokeStyle = `rgba(0, 242, 254, ${mAlpha})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+    }
+  }
+
+  function updateRipples() {
+    for (let i = ripples.length - 1; i >= 0; i--) {
+      const r = ripples[i];
+      r.radius += 6;
+      r.strength *= 0.94;
+      r.alpha = r.strength * 0.4;
+
+      ctx.beginPath();
+      ctx.arc(r.x, r.y, r.radius, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(0, 242, 254, ${r.alpha})`;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      if (r.strength < 0.02 || r.radius > 350) {
+        ripples.splice(i, 1);
+      }
+    }
+  }
+
+  function animate() {
+    if (!isVisible) {
+      animationFrameId = requestAnimationFrame(animate);
+      return;
+    }
+
+    ctx.clearRect(0, 0, width, height);
+
+    // Update and draw ripples
+    updateRipples();
+
+    // Draw connections
+    drawConnections();
+
+    // Update and draw particles
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].update();
+      particles[i].draw();
+    }
+
+    animationFrameId = requestAnimationFrame(animate);
+  }
+
+  // Mouse Listeners
+  window.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    if (e.clientY <= rect.bottom && e.clientY >= rect.top) {
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    } else {
+      mouse.x = -1000;
+      mouse.y = -1000;
+    }
+  });
+
+  window.addEventListener('mouseleave', () => {
+    mouse.x = -1000;
+    mouse.y = -1000;
+  });
+
+  window.addEventListener('click', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    if (e.clientY <= rect.bottom && e.clientY >= rect.top) {
+      ripples.push({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+        radius: 5,
+        strength: 1,
+        alpha: 0.5
+      });
+    }
+  });
+
+  // Performance Optimization: Pause when off-screen
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      isVisible = entry.isIntersecting;
+    });
+  }, { threshold: 0.05 });
+  observer.observe(canvas);
+
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(resize, 150);
+  });
+
+  // Init
+  resize();
+  animate();
+})();
+
+
+/**
+ * AURA // CREATIVE STUDIO - Core Application Scripts
+ * Cursor, Audio Synthesis, Estimator, Portfolio Filter, Modals, World Clocks
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+  'use strict';
+
+  // ==========================================
+  // 1. Custom Magnetic Smooth Cursor
+  // ==========================================
+  const cursorDot = document.querySelector('.cursor-dot');
+  const cursorFollower = document.querySelector('.cursor-follower');
+
+  if (cursorDot && cursorFollower && window.matchMedia('(pointer: fine)').matches) {
+    let mouseX = -100, mouseY = -100;
+    let followerX = -100, followerY = -100;
+    const speed = 0.18; // lerp ease
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursorDot.style.left = `${mouseX}px`;
+      cursorDot.style.top = `${mouseY}px`;
+    });
+
+    function renderCursor() {
+      followerX += (mouseX - followerX) * speed;
+      followerY += (mouseY - followerY) * speed;
+      cursorFollower.style.left = `${followerX}px`;
+      cursorFollower.style.top = `${followerY}px`;
+      requestAnimationFrame(renderCursor);
+    }
+    renderCursor();
+
+    const hoverTargets = document.querySelectorAll('a, button, input, textarea, select, .project-card, .estimator-chip, .radio-card, .service-card, .budget-btn');
+    hoverTargets.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        document.body.classList.add('cursor-hover');
+      });
+      el.addEventListener('mouseleave', () => {
+        document.body.classList.remove('cursor-hover');
+      });
+    });
+  }
+
+  // ==========================================
+  // 2. Web Audio API Tactile Sound Engine
+  // ==========================================
+  let audioCtx = null;
+  let isSoundEnabled = false;
+  const audioBtn = document.getElementById('audio-toggle');
+
+  function initAudio() {
+    if (!audioCtx) {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      audioCtx = new AudioContext();
+    }
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+  }
+
+  function playSoftChime(freq = 520, type = 'sine', duration = 0.12) {
+    if (!isSoundEnabled || !audioCtx) return;
+    try {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(freq * 0.8, audioCtx.currentTime + duration);
+
+      gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + duration);
+    } catch (e) {
+      // Audio fallback silent
+    }
+  }
+
+  if (audioBtn) {
+    audioBtn.addEventListener('click', () => {
+      initAudio();
+      isSoundEnabled = !isSoundEnabled;
+      audioBtn.classList.toggle('active', isSoundEnabled);
+      if (isSoundEnabled) {
+        playSoftChime(700, 'triangle', 0.2);
+      }
+    });
+
+    // Add gentle click audio on interactive buttons
+    document.querySelectorAll('button, .filter-btn, .estimator-chip, .radio-card').forEach(el => {
+      el.addEventListener('click', () => {
+        if (isSoundEnabled) playSoftChime(440, 'sine', 0.08);
+      });
+    });
+  }
+
+  // ==========================================
+  // 3. Navigation Header & Mobile Menu
+  // ==========================================
+  const header = document.querySelector('.site-header');
+  const mobileMenuBtn = document.getElementById('mobile-menu-toggle');
+  const mobileDrawer = document.getElementById('mobile-drawer');
+  const mobileCloseBtn = document.getElementById('mobile-drawer-close');
+  const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  }, { passive: true });
+
+  if (mobileMenuBtn && mobileDrawer) {
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileDrawer.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+    if (mobileCloseBtn) {
+      mobileCloseBtn.addEventListener('click', () => {
+        mobileDrawer.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    }
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileDrawer.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  // Active section indicator on scroll
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    const scrollY = window.pageYOffset;
+    sections.forEach(current => {
+      const sectionHeight = current.offsetHeight;
+      const sectionTop = current.offsetTop - 120;
+      const sectionId = current.getAttribute('id');
+      const targetNav = document.querySelector(`.nav-link[href*="${sectionId}"]`);
+      if (targetNav) {
+        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+          targetNav.classList.add('active');
+        } else {
+          targetNav.classList.remove('active');
+        }
+      }
+    });
+  }, { passive: true });
+
+  // ==========================================
+  // 4. Portfolio Category Filtering
+  // ==========================================
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll('.project-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filterValue = btn.getAttribute('data-filter');
+
+      projectCards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        if (filterValue === 'all' || category.includes(filterValue)) {
+          card.style.display = 'block';
+          setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0) scale(1)';
+          }, 30);
+        } else {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(20px) scale(0.96)';
+          setTimeout(() => {
+            card.style.display = 'none';
+          }, 200);
+        }
+      });
+    });
+  });
+
+  // ==========================================
+  // 5. Case Study Modal Data & Handlers
+  // ==========================================
+  const caseStudiesData = {
+    neura: {
+      client: "NEURA AI",
+      category: "AI Spatial Interface & Branding",
+      year: "2025",
+      title: "Pioneering the Next Era of Generative AI Interfaces",
+      metrics: [
+        { label: "User Adoption", val: "+340%" },
+        { label: "Series A Raised", val: "$38M" },
+        { label: "Design Award", val: "FWA of the Day" }
+      ],
+      challenge: "Neura AI engineered breakthrough foundational foundation models, but lacked a visual and spatial interface that communicated trust, superhuman capability, and effortless interaction for enterprise design teams.",
+      solution: "We architected an immersive WebGL-powered 3D dashboard, an adaptive multi-modal prompt canvas, and a unified design system that feels like software from the next decade.",
+      quote: "AURA transformed our deep-tech prototype into the most talked-about AI design platform of the year. Their vision is unmatched.",
+      author: "Elena Rostova — Co-Founder & CEO, Neura AI",
+      deliverables: ["Visual Identity System", "WebGL Spatial Canvas", "Design Token Library", "Enterprise Web App", "Launch Video"],
+      tags: ["Artificial Intelligence", "WebGL 3D", "Design System", "Product Design"],
+      color: "#00f2fe"
+    },
+    chronos: {
+      client: "CHRONOS SWITZERLAND",
+      category: "Luxury E-Commerce & 3D",
+      year: "2025",
+      title: "Haute Horlogerie Reimagined for the Digital Collector",
+      metrics: [
+        { label: "Conversion Lift", val: "+84%" },
+        { label: "Avg Session Time", val: "5m 42s" },
+        { label: "Awwwards", val: "Site of the Month" }
+      ],
+      challenge: "Centuries-old Swiss horology craftsmanship struggled to translate its tactile prestige and meticulous detail onto standard two-dimensional e-commerce catalogs.",
+      solution: "Created an interactive 60fps 3D watch configurator with sub-millimeter tourbillon animations, bespoke editorial typography, and high-security checkout.",
+      quote: "The digital experience AURA built reflects the exact perfectionism of our master watchmakers. Our collector engagement shattered all previous benchmarks.",
+      author: "Henri de Montmirail — Managing Director",
+      deliverables: ["Interactive 3D Configurator", "Global E-Commerce Architecture", "Editorial Micro-Interactions", "Sound Identity"],
+      tags: ["Luxury Horology", "Three.js 3D", "Headless Commerce", "Editorial"],
+      color: "#f59e0b"
+    },
+    synapse: {
+      client: "SYNAPSE CLOUD",
+      category: "Enterprise Cloud & Dev Tools",
+      year: "2024",
+      title: "Simplifying Cloud Telemetry for 50,000+ Engineers",
+      metrics: [
+        { label: "Time-to-Insight", val: "-62%" },
+        { label: "ARR Growth", val: "3.2x" },
+        { label: "NPS Score", val: "88" }
+      ],
+      challenge: "Complex distributed microservices generated billions of log traces daily, overwhelming engineers with clunky, sluggish legacy dashboards.",
+      solution: "Engineered a low-latency dark-mode developer workbench with high-density data visualization, instant keyboard shortcuts, and cohesive iconography.",
+      quote: "Devs actually love living inside Synapse now. AURA turned enterprise cloud monitoring into an absolute craft.",
+      author: "David Chen — VP of Engineering",
+      deliverables: ["Complex Data Visualization", "Design System at Scale", "Component SDK", "Documentation Hub"],
+      tags: ["Developer Tools", "Data Viz", "SaaS Interface", "React"],
+      color: "#8b5cf6"
+    },
+    solaris: {
+      client: "SOLARIS MOTORS",
+      category: "Automotive & Motion",
+      year: "2024",
+      title: "The Digital Rollout for an All-Electric Hypercar",
+      metrics: [
+        { label: "Pre-orders in 48h", val: "2,400+" },
+        { label: "Organic Reach", val: "18M+" },
+        { label: "Red Dot Award", val: "Best of Best" }
+      ],
+      challenge: "Launching an elite electric hypercar with zero heritage required instantly establishing high-luxury credentials and bleeding-edge aerodynamics credibility.",
+      solution: "Developed an aerodynamic wind-tunnel simulation page with real-time particle physics, soundscapes recorded from electric dynos, and interactive interior exploration.",
+      quote: "AURA delivered a digital launch experience that rivaled Apple keynotes. The pre-orders sold out in two days.",
+      author: "Sarah Lindqvist — Chief Brand Officer",
+      deliverables: ["Automotive Configurator", "Motion Direction", "Sound Engineering", "Global Campaign Site"],
+      tags: ["Automotive", "WebGL Physics", "Interactive 3D", "Sound Design"],
+      color: "#ec4899"
+    },
+    metaform: {
+      client: "METAFORM ARCHITECTURE",
+      category: "Spatial Design & Studio Portfolio",
+      year: "2024",
+      title: "Generative Architecture Captured Through Dynamic Canvas",
+      metrics: [
+        { label: "Inquiry Value", val: "$45M+" },
+        { label: "Press Features", val: "65+" },
+        { label: "CSSDA", val: "Best UI / UX" }
+      ],
+      challenge: "A world-renowned avant-garde architectural collective needed a portfolio that matched their physical structures: fluid, monolithic, and structural.",
+      solution: "Designed a fluid grid with smooth continuous scroll transitions, structural wireframe renders, and architectural blueprint overlays.",
+      quote: "Every corner of our site behaves like our physical structures: bold, precise, and breathtaking.",
+      author: "Julian Sterling — Founding Principal",
+      deliverables: ["Visual Identity", "Architectural Wireframe Mode", "Editorial Web Platform"],
+      tags: ["Architecture", "Editorial", "Continuous Scroll", "Creative Tech"],
+      color: "#10b981"
+    },
+    vox: {
+      client: "VOX ACOUSTICS",
+      category: "Hardware & Sound Showcase",
+      year: "2024",
+      title: "Acoustic Engineering Visualized Through Pure Soundwaves",
+      metrics: [
+        { label: "Kickstarter Funded", val: "1,200%" },
+        { label: "Direct Sales", val: "$12M" },
+        { label: "Webby Award", val: "Best Visual Design" }
+      ],
+      challenge: "Convincing audiophiles to purchase high-end planar magnetic headphones online without being able to listen in person.",
+      solution: "Built a browser-based frequency spectrum analyzer allowing users to compare sound profiles live, with exploded 3D component views.",
+      quote: "They made sound visible. That single insight changed our entire commercial trajectory.",
+      author: "Marcus Vance — Head of Product",
+      deliverables: ["Hardware 3D Exploded Renders", "Interactive Audio Spectrum", "Brand Packaging"],
+      tags: ["Hardware", "Web Audio API", "3D CGI", "Sound Engineering"],
+      color: "#38bdf8"
+    }
+  };
+
+  const modalOverlay = document.getElementById('case-study-modal');
+  const modalCloseBtn = document.getElementById('modal-close');
+  const modalBody = document.getElementById('modal-body-content');
+
+  function openCaseStudy(projectId) {
+    const data = caseStudiesData[projectId];
+    if (!data) return;
+
+    modalBody.innerHTML = `
+      <div class="modal-hero-cover" style="background: radial-gradient(circle at center, ${data.color}22 0%, #111118 100%);">
+        <div style="text-align: center; padding: 2rem;">
+          <span style="font-family: var(--font-mono); font-size: 0.85rem; color: ${data.color}; letter-spacing: 0.15em; text-transform: uppercase;">
+            ${data.client} // CASE STUDY
+          </span>
+          <h2 style="font-size: clamp(1.8rem, 3.5vw, 2.75rem); color: #fff; margin-top: 0.5rem; max-width: 650px;">
+            ${data.title}
+          </h2>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-tags">
+          ${data.tags.map(t => `<span class="tag-badge">${t}</span>`).join('')}
+        </div>
+        <div class="modal-metrics-strip">
+          ${data.metrics.map(m => `
+            <div>
+              <div class="modal-metric-val" style="color: ${data.color};">${m.val}</div>
+              <div class="modal-metric-sub">${m.label}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="modal-content-grid">
+          <div>
+            <div style="margin-bottom: 2rem;">
+              <h4 class="modal-section-h">The Challenge</h4>
+              <p>${data.challenge}</p>
+            </div>
+            <div>
+              <h4 class="modal-section-h">Our Strategic Solution</h4>
+              <p>${data.solution}</p>
+            </div>
+            <div class="modal-quote-box" style="border-left-color: ${data.color};">
+              <p>"${data.quote}"</p>
+              <div style="margin-top: 0.6rem; font-size: 0.8rem; color: var(--text-tertiary); font-family: var(--font-mono);">
+                ${data.author}
+              </div>
+            </div>
+          </div>
+          <div>
+            <h4 class="modal-section-h">Core Deliverables</h4>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem;">
+              ${data.deliverables.map(d => `
+                <li style="display: flex; align-items: center; gap: 0.6rem; font-size: 0.9rem; color: #cbd5e1;">
+                  <span style="color: ${data.color}; font-weight: bold;">✔</span> ${d}
+                </li>
+              `).join('')}
+            </ul>
+            <button class="btn btn-primary" style="width: 100%;" onclick="document.getElementById('case-study-modal').classList.remove('active'); document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">
+              Request Similar Project
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    modalOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Bind project card clicks
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const pId = card.getAttribute('data-project');
+      openCaseStudy(pId);
+    });
+  });
+
+  if (modalCloseBtn && modalOverlay) {
+    modalCloseBtn.addEventListener('click', () => {
+      modalOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) {
+        modalOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalOverlay && modalOverlay.classList.contains('active')) {
+      modalOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+
+  // ==========================================
+  // 6. Interactive Project Scope & Cost Estimator
+  // ==========================================
+  const serviceChips = document.querySelectorAll('.estimator-chip');
+  const timelineCards = document.querySelectorAll('.timeline-card');
+  const priceDisplay = document.getElementById('calc-total-price');
+  const timelineDisplay = document.getElementById('calc-est-timeline');
+  const deliverablesDisplay = document.getElementById('calc-deliverables-count');
+  const applyScopeBtn = document.getElementById('apply-scope-to-contact');
+
+  function calculateEstimate() {
+    let basePrice = 0;
+    let selectedServices = [];
+
+    serviceChips.forEach(chip => {
+      if (chip.classList.contains('selected')) {
+        basePrice += parseInt(chip.getAttribute('data-cost'), 10) || 0;
+        selectedServices.push(chip.getAttribute('data-name'));
+      }
+    });
+
+    if (basePrice === 0) {
+      basePrice = 12000; // default baseline starter
+    }
+
+    let multiplier = 1.0;
+    let timelineLabel = "8 - 10 Weeks";
+
+    const activeTimeline = document.querySelector('.timeline-card.selected');
+    if (activeTimeline) {
+      const mode = activeTimeline.getAttribute('data-mode');
+      if (mode === 'sprint') {
+        multiplier = 1.25;
+        timelineLabel = "4 - 6 Weeks (Sprint)";
+      } else if (mode === 'standard') {
+        multiplier = 1.0;
+        timelineLabel = "8 - 10 Weeks (Standard)";
+      } else if (mode === 'flexible') {
+        multiplier = 0.9;
+        timelineLabel = "12 - 16 Weeks (Quarterly)";
+      }
+    }
+
+    const calculatedLow = Math.round((basePrice * multiplier) / 1000) * 1000;
+    const calculatedHigh = Math.round((calculatedLow * 1.3) / 1000) * 1000;
+
+    if (priceDisplay) {
+      priceDisplay.textContent = `$${calculatedLow.toLocaleString()} - $${calculatedHigh.toLocaleString()}`;
+    }
+    if (timelineDisplay) {
+      timelineDisplay.textContent = timelineLabel;
+    }
+    if (deliverablesDisplay) {
+      deliverablesDisplay.textContent = `${selectedServices.length || 1} Selected Scope Item${selectedServices.length === 1 ? '' : 's'}`;
+    }
+  }
+
+  serviceChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chip.classList.toggle('selected');
+      calculateEstimate();
+    });
+  });
+
+  timelineCards.forEach(card => {
+    card.addEventListener('click', () => {
+      timelineCards.forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      calculateEstimate();
+    });
+  });
+
+  if (applyScopeBtn) {
+    applyScopeBtn.addEventListener('click', () => {
+      // Gather selected chips
+      const selected = Array.from(document.querySelectorAll('.estimator-chip.selected'))
+        .map(c => c.getAttribute('data-name'));
+
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      // Pre-select budget tier based on estimate
+      const currentPriceText = priceDisplay ? priceDisplay.textContent : '';
+      if (currentPriceText.includes('50,000') || currentPriceText.includes('60,000') || currentPriceText.includes('70,000')) {
+        document.querySelectorAll('.budget-btn').forEach(b => {
+          if (b.getAttribute('data-val') === 'tier-3') b.click();
+        });
+      } else {
+        document.querySelectorAll('.budget-btn').forEach(b => {
+          if (b.getAttribute('data-val') === 'tier-2') b.click();
+        });
+      }
+
+      // Pre-fill message
+      const msgInput = document.getElementById('project-brief');
+      if (msgInput && (!msgInput.value || msgInput.value.trim() === '')) {
+        msgInput.value = `Hi Aura Team, I estimated my scope on your website: ${selected.length ? selected.join(', ') : 'Creative Partnership'}. Estimated budget target: ${currentPriceText}. Let's schedule a kickoff call.`;
+      }
+    });
+  }
+
+  // Initial calculation
+  calculateEstimate();
+
+  // ==========================================
+  // 7. Budget Selector in Contact Form
+  // ==========================================
+  const budgetBtns = document.querySelectorAll('.budget-btn');
+  budgetBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      budgetBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  // ==========================================
+  // 8. Contact Form Submission & Confirmation
+  // ==========================================
+  const contactForm = document.getElementById('agency-inquiry-form');
+  const formStatus = document.getElementById('form-status');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `
+        <svg style="animation: spin 1s linear infinite; width: 18px; height: 18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
+          <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"></path>
+        </svg> Transmitting Brief...
+      `;
+
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+        if (formStatus) {
+          formStatus.className = 'form-status-msg success';
+          formStatus.innerHTML = `
+            <strong>Inquiry Transmitted Successfully!</strong><br>
+            Thank you! Our Founding Partners have received your brief. We will review your project parameters and respond within 24 hours.
+          `;
+          contactForm.reset();
+        }
+      }, 1200);
+    });
+  }
+
+  // Newsletter Form
+  const newsletterForm = document.getElementById('newsletter-form');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const input = newsletterForm.querySelector('input');
+      if (input && input.value) {
+        alert('Thank you for subscribing to AURA // DISPATCHES. You will receive our monthly design & creative technology essays.');
+        input.value = '';
+      }
+    });
+  }
+
+  // ==========================================
+  // 9. Live World Studio Clocks (NY, LDN, TYO)
+  // ==========================================
+  function updateWorldClocks() {
+    const nyEl = document.getElementById('clock-ny');
+    const ldnEl = document.getElementById('clock-ldn');
+    const tyoEl = document.getElementById('clock-tyo');
+
+    const now = new Date();
+
+    const optionsNY = { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+    const optionsLDN = { timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+    const optionsTYO = { timeZone: 'Asia/Tokyo', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+
+    if (nyEl) nyEl.textContent = new Intl.DateTimeFormat('en-US', optionsNY).format(now);
+    if (ldnEl) ldnEl.textContent = new Intl.DateTimeFormat('en-GB', optionsLDN).format(now);
+    if (tyoEl) tyoEl.textContent = new Intl.DateTimeFormat('ja-JP', optionsTYO).format(now);
+  }
+
+  setInterval(updateWorldClocks, 1000);
+  updateWorldClocks();
+
+  // ==========================================
+  // 10. Testimonials Carousel
+  // ==========================================
+  const track = document.querySelector('.testimonial-track');
+  const prevBtn = document.getElementById('testi-prev');
+  const nextBtn = document.getElementById('testi-next');
+  let currentTestimonialIndex = 0;
+  const testimonials = document.querySelectorAll('.testimonial-card');
+
+  function updateCarousel() {
+    if (!track) return;
+    track.style.transform = `translateX(-${currentTestimonialIndex * 100}%)`;
+  }
+
+  if (prevBtn && nextBtn && testimonials.length > 0) {
+    nextBtn.addEventListener('click', () => {
+      currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
+      updateCarousel();
+    });
+    prevBtn.addEventListener('click', () => {
+      currentTestimonialIndex = (currentTestimonialIndex - 1 + testimonials.length) % testimonials.length;
+      updateCarousel();
+    });
+  }
+
+  // ==========================================
+  // 11. Back to Top Smooth Scroll
+  // ==========================================
+  const backToTopBtn = document.getElementById('back-to-top');
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // ==========================================
+  // 12. Scroll Reveal Observer
+  // ==========================================
+  const revealElements = document.querySelectorAll('.service-card, .process-step-card, .team-card, .award-row');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  revealElements.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(25px)';
+    el.style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+    revealObserver.observe(el);
+  });
+});
+
+// Keyframe helper for spinning animation
+const styleSheet = document.createElement("style");
+styleSheet.innerText = `
+  @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+`;
+document.head.appendChild(styleSheet);
+
+</script>
+</body>
+</html>
